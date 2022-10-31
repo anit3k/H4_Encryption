@@ -1,0 +1,71 @@
+﻿@model HashingViewModel
+<div class="text-center">
+    <h1 class="display-4">Hashing Strings!</h1>
+    <p>Hash your strings here!</p>
+</div>
+
+<form asp-controller="Home" asp-action="Hashing" method="post">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-md-2" asp-for="SelectedHashingTypes">Select type</label>
+                        <div class="col-md-5">
+                            <select class="form-control" asp-for="SelectedHashingTypes" asp-items="Model.HashingTypes">
+                                <option>Select Hashingtype here</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <div class="row">
+                        <label asp-for="Input" class="col-md-2"></label>
+                        <div class="col-md-5">
+                            <input class="form-control" asp-for="Input" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-8">
+                <button type="submit" class="btn btn-primary">Convert to Hash</button>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col-8">
+        @if (Model.Output != null)
+        {
+            <div class="card">
+                <h5 class="card-title">String Converted to Hashing</h5>
+                <div class="card-body">
+                    @Model.Output
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col">
+    </div>
+</div>

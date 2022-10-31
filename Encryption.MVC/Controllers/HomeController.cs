@@ -17,6 +17,18 @@ namespace Encryption.MVC.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Hashing()
+        {
+            return View(new HashingViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Hashing(HashingViewModel model)
+        {
+            model.Output = model.Input + " --> Output here";
+            return View(model);
+        }
 
         public IActionResult Privacy()
         {
