@@ -26,7 +26,7 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult Hashing(HashingViewModel model)
         {
-            model.Output = model.Input + " --> Output here";
+            model.Output = "ab137b027d5988d44880bdf94489a66c9e06d5861a04b54a72ab344ae7534024";
             return View(model);
         }
 
