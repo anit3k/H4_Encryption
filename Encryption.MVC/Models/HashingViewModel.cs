@@ -22,7 +22,7 @@ namespace Encryption.MVC.Models
 		#region Methods
 		private void PopulateHashingTypes()
 		{
-			HashingTypes.Add(new SelectListItem { Value = "1", Text = "SHA160"});
+			HashingTypes.Add(new SelectListItem { Value = "1", Text = "SHA1"});
 			HashingTypes.Add(new SelectListItem { Value = "2", Text = "SHA256"});
 			HashingTypes.Add(new SelectListItem { Value = "3", Text = "SHA384"});
 			HashingTypes.Add(new SelectListItem { Value = "4", Text = "SHA512"});

@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.MVC", "Encryption.MVC\Encryption.MVC.csproj", "{2C64BC8E-CA04-4BF3-822E-9F075EC8C213}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.MVC", "Encryption.MVC\Encryption.MVC.csproj", "{2C64BC8E-CA04-4BF3-822E-9F075EC8C213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Hashing", "Encryption.Hashing\Encryption.Hashing.csproj", "{BBBC3CE1-E973-4CEB-B2ED-104D406CBEFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Hashing", "Encryption.Hashing\Encryption.Hashing.csproj", "{BBBC3CE1-E973-4CEB-B2ED-104D406CBEFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Console", "Encryption.Console\Encryption.Console.csproj", "{16D19581-4124-415F-99A7-6FE7C63C85D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BBBC3CE1-E973-4CEB-B2ED-104D406CBEFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBBC3CE1-E973-4CEB-B2ED-104D406CBEFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBBC3CE1-E973-4CEB-B2ED-104D406CBEFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D19581-4124-415F-99A7-6FE7C63C85D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D19581-4124-415F-99A7-6FE7C63C85D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D19581-4124-415F-99A7-6FE7C63C85D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D19581-4124-415F-99A7-6FE7C63C85D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
