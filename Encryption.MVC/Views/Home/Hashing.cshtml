@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="mb-3">
-                        <label class="form-label" asp-for="SelectedHashingTypes">Hashing Type: </label>
+                            <label class="form-label" asp-for="SelectedHashingTypes">Hashing Type: </label>
                             <select class="form-select" asp-for="SelectedHashingTypes" asp-items="Model.HashingTypes">
                                 <option>Please select type</option>
                             </select>
@@ -31,7 +31,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="mb-3">
-                        <label asp-for="Input" class="form-label">Input string: </label>
+                            <label asp-for="Input" class="form-label">Input string: </label>
                             <input class="form-control" asp-for="Input" />
                         </div>
                     </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-8">
                 <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Convert to Hash</button>
+                    <button type="submit" class="btn btn-primary">Convert to Hash</button>
                 </div>
             </div>
             <div class="col">
@@ -61,16 +61,9 @@
         @if (Model.Output != null)
         {
             <div class="alert alert-success" role="alert">
-                Hashing value: <br/>
+                Hashing value: <br />
                 @Model.Output
             </div>
-
-           @* <div class="card">
-                <h5 class="card-title">String Converted to Hashing</h5>
-                <div class="card-body">
-                    @Model.Output
-                </div>
-            </div>*@
         }
     </div>
     <div class="col">
