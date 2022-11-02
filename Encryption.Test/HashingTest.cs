@@ -66,6 +66,18 @@ namespace Encryption.Test
         }
         #endregion
 
+        #region KeyGenerator
+        [Test]
+        public void KeyGenerator_ShouldWork()
+        {
+            var key = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
+            var secondKey = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
+            Assert.That(key, Is.Not.EqualTo(secondKey));
+            Assert.That(key, Is.Not.SameAs(secondKey));
+        }
+        
+        #endregion
+
         #region HashingWithSalt
 
         [Test]
