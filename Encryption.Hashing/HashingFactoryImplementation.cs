@@ -1,11 +1,18 @@
 ﻿namespace Encryption.Hashing
 {
+    /// <summary>
+    /// Used to create Algorithm class, also part of seperating domain logic from UI application
+    /// </summary>
     public class HashingFactoryImplementation : IHashingFactory
     {
+        /// <summary>
+        /// Creates a new instance of a algorithm
+        /// </summary>
+        /// <param name="hashType">Name of alforithm</param>
+        /// <returns></returns>
         public IHashing CreateHashing(string hashType)
         {
-            var type = GetEnum<HashingType>(hashType);
-            switch (type)
+            switch (GetEnum<HashingType>(hashType))
             {
                 case HashingType.SHA1:
                     return new SHA1Hashing();
@@ -22,6 +29,12 @@
             }
         }
 
+        /// <summary>
+        /// Get the corresponding enum for hashing type
+        /// </summary>
+        /// <typeparam name="T">Generic</typeparam>
+        /// <param name="hashType">string that correspond to enum</param>
+        /// <returns>hashing type enum</returns>
         private T GetEnum<T>(string hashType)
         {
             return (T)Enum.Parse(typeof(HashingType), hashType, true);

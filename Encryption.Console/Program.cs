@@ -4,6 +4,7 @@ using Encryption.Hashing;
 
 IHashingFactory hashingFactory = new HashingFactoryImplementation();
 
+
 var test = hashingFactory.CreateHashing("SHA512");
 var result = test.GetHashValue("1805");
 

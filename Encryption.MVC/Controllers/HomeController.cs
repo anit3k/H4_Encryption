@@ -29,7 +29,7 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult Hashing(HashingViewModel model)
         {
-            model.Output = _hashingFactory.CreateHashing(model.SelectedHashingTypes.ToString()).GetHashValue(model.Input);
+            model.Output = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
             return View(model);
         }
 

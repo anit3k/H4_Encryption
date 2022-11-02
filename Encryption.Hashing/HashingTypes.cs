@@ -1,11 +1,14 @@
 ﻿namespace Encryption.Hashing
 {
+    /// <summary>
+    /// Enum of implemented algorithms
+    /// </summary>
     public enum HashingType
     {
-        SHA1 = 1,
-        SHA256 = 2,
-        SHA384 = 3,
-        SHA512 = 4,
-        MD5 = 5
+        SHA1,
+        SHA256,
+        SHA384,
+        SHA512,
+        MD5
     }
 }
