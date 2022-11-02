@@ -10,7 +10,6 @@ namespace Encryption.KeyGenerator
             {
                 var randomNumber = new byte[KeySize];
                 randomNumberGenerator.GetBytes(randomNumber);
-
                 return randomNumber;
             }
         }
