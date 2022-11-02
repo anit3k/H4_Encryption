@@ -39,7 +39,7 @@ namespace Encryption.Test
         }
 
         [Test]
-        public void SHA1Hashing_Should_Fail()
+        public void SHA1Hashing_ShouldNotWork()
         {
             var resultLowerCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("test");
             var resultUpperCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("TEST");
@@ -106,7 +106,7 @@ namespace Encryption.Test
         }
 
         [Test]
-        public void AllHashingTypesWithSalt_ShouldFail()
+        public void AllHashingTypesWithSalt_ShouldNotWork()
         {
             var saltLength = 8;
             var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
@@ -122,9 +122,12 @@ namespace Encryption.Test
             foreach (var item in hashingTypes)
             {
                 var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, Convert.FromBase64String("Rand1234"));
-                Assert.That(result2, Is.Not.EqualTo(result));
-                Assert.That(result2, Is.Not.SameAs(result));
+                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength));
+                var resultWithUpperCase = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt("PASSWORD1234", salt);
+                Assert.That(resultWithAnotherSaltKey, Is.Not.EqualTo(result));
+                Assert.That(resultWithAnotherSaltKey, Is.Not.SameAs(result));
+                Assert.That(resultWithUpperCase, Is.Not.EqualTo(result));
+                Assert.That(resultWithUpperCase, Is.Not.SameAs(result));
             }
         }
         #endregion
