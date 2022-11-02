@@ -3,22 +3,14 @@ using System.Text;
 
 namespace Encryption.Hashing
 {
-    public class SHA384Hashing : IHashing
+    public class SHA384Hashing : HashingBase, IHashing
     {
         public string GetHashValue(string dataToHash)
         {
-            using (SHA384 SHA384Hash = SHA384.Create())
+            using (SHA384 algorithm = SHA384.Create())
             {
-                // ComputeHash - returns byte array  
-                byte[] bytes = SHA384Hash.ComputeHash(Encoding.UTF8.GetBytes(dataToHash));
-
-                // Convert byte array to a string   
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    builder.Append(bytes[i].ToString("x2"));
-                }
-                return builder.ToString();
+                byte[] bytes = base.GethashingBytes(dataToHash, algorithm);
+                return base.ConvertToString(bytes);
             }
         }
     }
