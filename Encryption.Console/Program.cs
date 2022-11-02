@@ -1,12 +1,26 @@
 ﻿// Used as playground for testing, faster and easier then running .net core mvc
 
 using Encryption.Hashing;
+using Encryption.KeyGenerator;
 
+IKeyGeneratorFactory keyGeneratorFactory = new KeyGeneratorFactoryImplementation();
 IHashingFactory hashingFactory = new HashingFactoryImplementation();
 
+var salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
 
-var test = hashingFactory.CreateHashing("SHA512");
-var result = test.GetHashValue("1805");
+
+var saltKey = Convert.ToBase64String(salt);
+
+var test = hashingFactory.CreateHashing("SHA256");
+var result = test.GetHashValueWithSalt("1805", salt);
+
+var test2 = hashingFactory.CreateHashing("SHA256");
+var result2 = test2.GetHashValueWithSalt("1805", salt);
+
+if (result == result2)
+{
+    Console.WriteLine("Hurra");
+}
 
 Console.WriteLine("Hashingvalue: " + result);
 

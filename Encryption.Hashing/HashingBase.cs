@@ -6,7 +6,7 @@ namespace Encryption.Hashing
     /// <summary>
     /// Base class for hashing
     /// </summary>
-    public class HashingBase
+    public abstract class HashingBase
     {
         /// <summary>
         /// This method return the byte array containing hashing
@@ -14,7 +14,7 @@ namespace Encryption.Hashing
         /// <param name="dataToHash">Data to be hashed</param>
         /// <param name="algorithm">Hashing algorithm</param>
         /// <returns></returns>
-        internal byte[] GethashingBytes(string dataToHash, HashAlgorithm algorithm)
+        protected byte[] GethashingBytes(string dataToHash, HashAlgorithm algorithm)
         {
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash));
         }
@@ -24,7 +24,7 @@ namespace Encryption.Hashing
         /// </summary>
         /// <param name="bytes">Byte array to be hashed</param>
         /// <returns>Hashed string</returns>
-        internal string ConvertToString(byte[] bytes)
+        protected string ConvertToString(byte[] bytes)
         {
             {
                 StringBuilder builder = new StringBuilder();
@@ -34,6 +34,11 @@ namespace Encryption.Hashing
                 }
                 return builder.ToString();
             }
+        }
+
+        protected byte[] GethashingBytesWithSalt(string dataToHash, byte[] salt, HashAlgorithm algorithm)
+        {
+            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash).Concat(salt).ToArray());
         }
     }
 }

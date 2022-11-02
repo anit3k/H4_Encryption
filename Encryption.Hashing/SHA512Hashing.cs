@@ -12,5 +12,14 @@ namespace Encryption.Hashing
                 return base.ConvertToString(bytes);
             }
         }
+
+        public string GetHashValueWithSalt(string dataToHash, byte[] salt)
+        {
+            using (SHA512 algorithm = SHA512.Create())
+            {
+                byte[] bytes = base.GethashingBytesWithSalt(dataToHash, salt, algorithm);
+                return base.ConvertToString(bytes);
+            }
+        }
     }
 }

@@ -9,5 +9,10 @@
         {
             return "Incorrect hashing type.";
         }
+
+        public string GetHashValueWithSalt(string dataToHash, byte[] salt)
+        {
+            return "Incorrect hashing type.";
+        }
     }
 }
