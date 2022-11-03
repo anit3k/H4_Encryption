@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Encryption.KeyGenerator
+namespace Encryption.KeyGenerator.Generators
 {
     public class Generator : IGenerator
     {

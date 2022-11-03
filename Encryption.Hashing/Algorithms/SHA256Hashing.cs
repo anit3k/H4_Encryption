@@ -1,26 +1,26 @@
 ﻿using System.Security.Cryptography;
 
-namespace Encryption.Hashing
+namespace Encryption.Hashing.Algorithms
 {
     public class SHA256Hashing : HashingBase, IHashing
     {
         public string GetHashValue(string dataToHash)
         {
             using (SHA256 algorithm = SHA256.Create())
-            { 
-                byte[] bytes = base.GethashingBytes(dataToHash, algorithm);  
-                return base.ConvertHashingByteToString(bytes);
+            {
+                byte[] bytes = GethashingBytes(dataToHash, algorithm);
+                return ConvertHashingByteToString(bytes);
             }
         }
 
         public string[] GetHashValueWithSalt(string dataToHash, byte[] salt)
         {
             string[] result = new string[2];
-            result[0] = base.ConvertGeneratedKeyToString(salt);
+            result[0] = ConvertGeneratedKeyToString(salt);
             using (SHA256 algorithm = SHA256.Create())
             {
-                byte[] bytes = base.GethashingBytesWithSalt(dataToHash, salt, algorithm);
-                result[1] = base.ConvertHashingByteToString(bytes);
+                byte[] bytes = GethashingBytesWithSalt(dataToHash, salt, algorithm);
+                result[1] = ConvertHashingByteToString(bytes);
             }
             return result;
         }

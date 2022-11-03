@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace Encryption.Hashing
+namespace Encryption.Hashing.Algorithms
 {
     public class MD5Hashing : HashingBase, IHashing
     {
@@ -8,19 +8,19 @@ namespace Encryption.Hashing
         {
             using (MD5 algorithm = MD5.Create())
             {
-                byte[] bytes = base.GethashingBytes(dataToHash, algorithm);
-                return base.ConvertHashingByteToString(bytes);
+                byte[] bytes = GethashingBytes(dataToHash, algorithm);
+                return ConvertHashingByteToString(bytes);
             }
         }
 
         public string[] GetHashValueWithSalt(string dataToHash, byte[] salt)
         {
             string[] result = new string[2];
-            result[0] = base.ConvertGeneratedKeyToString(salt);
+            result[0] = ConvertGeneratedKeyToString(salt);
             using (MD5 algorithm = MD5.Create())
             {
-                byte[] bytes = base.GethashingBytesWithSalt(dataToHash, salt, algorithm);
-                result[1] = base.ConvertHashingByteToString(bytes);
+                byte[] bytes = GethashingBytesWithSalt(dataToHash, salt, algorithm);
+                result[1] = ConvertHashingByteToString(bytes);
             }
             return result;
         }

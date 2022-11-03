@@ -1,4 +1,6 @@
-﻿namespace Encryption.KeyGenerator
+﻿using Encryption.KeyGenerator.Generators;
+
+namespace Encryption.KeyGenerator.Factories
 {
     public interface IKeyGeneratorFactory
     {

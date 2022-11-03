@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Encryption.Hashing
+namespace Encryption.Hashing.Algorithms
 {
     /// <summary>
     /// Base class for hashing
@@ -40,7 +40,7 @@ namespace Encryption.Hashing
         {
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash).Concat(salt).ToArray());
         }
-        
+
         protected string ConvertGeneratedKeyToString(byte[] key)
         {
             return Convert.ToBase64String(key);

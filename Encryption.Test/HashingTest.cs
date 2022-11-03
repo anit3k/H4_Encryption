@@ -1,5 +1,6 @@
-﻿using Encryption.Hashing;
+﻿using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator;
+using Encryption.KeyGenerator.Factories;
 
 namespace Encryption.Test
 {

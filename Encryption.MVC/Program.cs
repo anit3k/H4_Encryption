@@ -1,5 +1,5 @@
-using Encryption.Hashing;
-using Encryption.KeyGenerator;
+using Encryption.Hashing.Factories;
+using Encryption.KeyGenerator.Factories;
 
 var builder = WebApplication.CreateBuilder(args);
 

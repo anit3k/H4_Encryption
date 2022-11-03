@@ -1,4 +1,4 @@
-﻿namespace Encryption.KeyGenerator
+﻿namespace Encryption.KeyGenerator.Generators
 {
     public interface IGenerator
     {

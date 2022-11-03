@@ -1,4 +1,4 @@
-﻿namespace Encryption.Hashing
+﻿namespace Encryption.Hashing.Algorithms
 {
     /// <summary>
     /// Interface to implement on each algorithm get the hash value

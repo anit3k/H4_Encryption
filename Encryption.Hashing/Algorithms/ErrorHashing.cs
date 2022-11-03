@@ -1,4 +1,4 @@
-﻿namespace Encryption.Hashing
+﻿namespace Encryption.Hashing.Algorithms
 {
     /// <summary>
     /// This class is used as an error class in the case of wrong hashing type input

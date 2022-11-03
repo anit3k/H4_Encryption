@@ -1,4 +1,4 @@
-﻿namespace Encryption.Hashing
+﻿namespace Encryption.Hashing.Enums
 {
     /// <summary>
     /// Enum of implemented algorithms

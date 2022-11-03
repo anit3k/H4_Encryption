@@ -1,7 +1,8 @@
 ﻿// Used as playground for testing, faster and easier then running .net core mvc
 
-using Encryption.Hashing;
+using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator;
+using Encryption.KeyGenerator.Factories;
 using System.Security.Cryptography;
 
 IKeyGeneratorFactory keyGeneratorFactory = new KeyGeneratorFactoryImplementation();

@@ -1,4 +1,7 @@
-﻿namespace Encryption.Hashing
+﻿using Encryption.Hashing.Algorithms;
+using Encryption.Hashing.Enums;
+
+namespace Encryption.Hashing.Factories
 {
     /// <summary>
     /// Used to create Algorithm class, also part of seperating domain logic from UI application
