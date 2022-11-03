@@ -32,6 +32,28 @@ namespace Encryption.MVC.Controllers
             model.Output = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
             return View(model);
         }
+        [HttpGet]
+        public IActionResult HashingWithSalt()
+        {
+            return View(new HashingWithSaltViewModel());
+        }
+        [HttpPost]
+        public IActionResult HashingWithSalt(HashingWithSaltViewModel model)
+        {
+            model.Output = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
+            return View(model);
+        }
+        [HttpGet]
+        public IActionResult HashingWithKey()
+        {
+            return View(new HashingWithKeyViewModel());
+        }
+        [HttpPost]
+        public IActionResult HashingWithKey(HashingWithKeyViewModel model)
+        {
+            model.Output = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
+            return View(model);
+        }
 
         public IActionResult Privacy()
         {

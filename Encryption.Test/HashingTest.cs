@@ -74,12 +74,10 @@ namespace Encryption.Test
             var secondKey = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
             Assert.That(key, Is.Not.EqualTo(secondKey));
             Assert.That(key, Is.Not.SameAs(secondKey));
-        }
-        
+        }        
         #endregion
 
         #region HashingWithSalt
-
         [Test]
         public void SHA1HashingWithSalt_ShouldWork()
         {
@@ -143,6 +141,5 @@ namespace Encryption.Test
             }
         }
         #endregion
-
     }
 }

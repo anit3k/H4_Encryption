@@ -10,4 +10,11 @@
     <ProjectReference Include="..\Encryption.Hashing\Encryption.Hashing.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Home\HashingWithSalt.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
