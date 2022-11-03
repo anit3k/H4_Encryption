@@ -7,5 +7,6 @@
     {
         string GetHashValue(string dataToHash);
         string[] GetHashValueWithSalt(string dataToHash, byte[] salt);
+        string[] GetHashValueWithKey(string dataToHash, byte[] key);
     }
 }

@@ -40,7 +40,7 @@ namespace Encryption.Hashing.Algorithms
         {
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash).Concat(salt).ToArray());
         }
-
+       
         protected string ConvertGeneratedKeyToString(byte[] key)
         {
             return Convert.ToBase64String(key);

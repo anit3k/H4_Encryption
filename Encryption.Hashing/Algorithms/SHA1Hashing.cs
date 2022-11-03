@@ -1,4 +1,5 @@
 ﻿using System.Security.Cryptography;
+using System.Text;
 
 namespace Encryption.Hashing.Algorithms
 {
@@ -22,6 +23,19 @@ namespace Encryption.Hashing.Algorithms
                 byte[] bytes = GethashingBytesWithSalt(dataToHash, salt, algorithm);
                 result[1] = ConvertHashingByteToString(bytes);
             }
+            return result;
+        }
+
+        public string[] GetHashValueWithKey(string dataToHash, byte[] key)
+        {
+            string[] result = new string[2];
+            result[0] = ConvertGeneratedKeyToString(key);
+            using (var hash = new HMACSHA1(key))
+            {
+                var bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(dataToHash));
+                result[1] = ConvertHashingByteToString(bytes);
+            }
+
             return result;
         }
     }
