@@ -1,7 +1,7 @@
 ﻿@model HashingWithKeyViewModel
 <div class="text-center">
-    <h1 class="display-4">Hashing Strings!</h1>
-    <p>Hash your strings here!</p>
+    <h1 class="display-4">Hashing with Key</h1>
+    <p>One way Hashing with Key, Locks the Future!</p>
 </div>
 
 <form asp-controller="Home" asp-action="HashingWithKey" method="post">
@@ -9,14 +9,23 @@
         <div class="row">
             <div class="col">
             </div>
-            <div class="col-8">
+            <div class="col-4">
                 <div class="form-group">
                     <div class="row">
                         <div class="mb-3">
                             <label class="form-label" asp-for="SelectedHashingTypes">Hashing Algorithm: </label>
                             <select class="form-select" asp-for="SelectedHashingTypes" asp-items="Model.HashingTypes">
-                                <option>Please select type</option>
                             </select>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="col-4">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="mb-3">
+                            <label class="form-label" asp-for="KeyLength" class="form-label">Key Length: </label>
+                            <input type="number" class="form-control" asp-for="KeyLength">
+                            </input>
                         </div>
                     </div>
                 </div>
@@ -32,7 +41,7 @@
                     <div class="row">
                         <div class="mb-3">
                             <label asp-for="Input" class="form-label">Input string: </label>
-                            <input class="form-control" asp-for="Input" />
+                            <input type="text" class="form-control" asp-for="Input" />
                         </div>
                     </div>
                 </div>
@@ -58,11 +67,12 @@
     <div class="col">
     </div>
     <div class="col-8">
-        @if (Model.Output != null)
+        @if (Model.OutputHashValue != null)
         {
             <div class="alert alert-success" role="alert">
-                Hashing value: <br />
-                @Model.Output
+                <p>Key: @Model.OutputKey</p>
+                <p>Input: @Model.OutputHashedString</p>
+                <p>Hashing value: @Model.OutputHashValue</p>
             </div>
         }
     </div>

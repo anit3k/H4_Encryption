@@ -2,13 +2,19 @@
 
 namespace Encryption.MVC.Models
 {
+	/// <summary>
+	/// View Model for Hashing With Key
+	/// </summary>
 	public class HashingWithKeyViewModel
     {
 		#region fields
 		private List<SelectListItem> _hashingTypes;
 		private string _selectedHashingType;
+		private int _keyLength;
 		private string _input;
-		private string _output;
+		private string _outputKey;
+		private string _outputHashedString;
+		private string _outputHashValue;
 		#endregion
 
 		#region Constructor
@@ -17,10 +23,18 @@ namespace Encryption.MVC.Models
 			HashingTypes = new List<SelectListItem>();
 			PopulateHashingTypes();
 		}
-		#endregion
+        public HashingWithKeyViewModel(string key, string hashedString, string hashValue)
+        {
+            HashingTypes = new List<SelectListItem>();
+            PopulateHashingTypes();
+			_outputKey = key;
+			_outputHashedString = hashedString;
+			_outputHashValue = hashValue;
+        }
+        #endregion
 
-		#region Methods
-		private void PopulateHashingTypes()
+        #region Methods
+        private void PopulateHashingTypes()
 		{
 			HashingTypes.Add(new SelectListItem { Value = "SHA1", Text = "SHA1"});
 			HashingTypes.Add(new SelectListItem { Value = "SHA256", Text = "SHA256"});
@@ -41,15 +55,30 @@ namespace Encryption.MVC.Models
 			get { return _selectedHashingType; }
 			set { _selectedHashingType = value; }
 		}
+		public int KeyLength
+		{
+			get { return _keyLength; }
+			set { _keyLength = value; }
+		}
 		public string Input
 		{
 			get { return _input; }
 			set { _input = value; }
 		}
-		public string Output
+		public string OutputKey
 		{
-			get { return _output; }
-			set { _output = value; }
+			get { return _outputKey; }
+			set { _outputKey = value; }
+		}
+		public string OutputHashedString
+		{
+			get { return _outputHashedString; }
+			set { _outputHashedString = value; }
+		}
+		public string OutputHashValue
+		{
+			get { return _outputHashValue; }
+			set { _outputHashValue = value; }
 		}
 		#endregion
 	}

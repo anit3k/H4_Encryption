@@ -2,13 +2,17 @@
 
 namespace Encryption.MVC.Models
 {
+	/// <summary>
+	/// View Model for Hashing
+	/// </summary>
 	public class HashingViewModel
     {
 		#region fields
 		private List<SelectListItem> _hashingTypes;
 		private string _selectedHashingType;
 		private string _input;
-		private string _output;
+		private string _outputHashedString;
+		private string _outputHashValue;
 		#endregion
 
 		#region Constructor
@@ -17,10 +21,17 @@ namespace Encryption.MVC.Models
 			HashingTypes = new List<SelectListItem>();
 			PopulateHashingTypes();
 		}
-		#endregion
+        public HashingViewModel(string outputString, string outputValue)
+        {
+            HashingTypes = new List<SelectListItem>();
+            PopulateHashingTypes();
+			_outputHashedString = outputString;
+			_outputHashValue = outputValue;
+        }
+        #endregion
 
-		#region Methods
-		private void PopulateHashingTypes()
+        #region Methods
+        private void PopulateHashingTypes()
 		{
 			HashingTypes.Add(new SelectListItem { Value = "SHA1", Text = "SHA1"});
 			HashingTypes.Add(new SelectListItem { Value = "SHA256", Text = "SHA256"});
@@ -46,10 +57,17 @@ namespace Encryption.MVC.Models
 			get { return _input; }
 			set { _input = value; }
 		}
-		public string Output
+
+		public string OutputHashString
 		{
-			get { return _output; }
-			set { _output = value; }
+			get { return _outputHashedString; }
+			set { _outputHashedString = value; }
+		}
+
+		public string OutputHashValue
+		{
+			get { return _outputHashValue; }
+			set { _outputHashValue = value; }
 		}
 		#endregion
 	}

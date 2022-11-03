@@ -1,7 +1,7 @@
 ﻿@model HashingViewModel
 <div class="text-center">
-    <h1 class="display-4">Hashing Strings!</h1>
-    <p>Hash your strings here!</p>
+    <h1 class="display-4">Simple Hashing</h1>
+    <p>Dont smoke It, Encrypt It!</p>
 </div>
 
 <form asp-controller="Home" asp-action="Hashing" method="post">
@@ -15,7 +15,6 @@
                         <div class="mb-3">
                             <label class="form-label" asp-for="SelectedHashingTypes">Hashing Algorithm: </label>
                             <select class="form-select" asp-for="SelectedHashingTypes" asp-items="Model.HashingTypes">
-                                <option>Please select type</option>
                             </select>
                         </div>
                     </div>
@@ -58,11 +57,11 @@
     <div class="col">
     </div>
     <div class="col-8">
-        @if (Model.Output != null)
+        @if (Model.OutputHashValue != null)
         {
             <div class="alert alert-success" role="alert">
-                Hashing value: <br />
-                @Model.Output
+                <p>Input: @Model.OutputHashString</p>
+                <p>Hashing value: @Model.OutputHashValue</p>
             </div>
         }
     </div>
