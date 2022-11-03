@@ -22,6 +22,7 @@ namespace Encryption.MVC.Models
         {
             HashingTypes = new List<SelectListItem>();
             PopulateHashingTypes();
+            _saltLenght = 8;
         }
         public HashingWithSaltViewModel(string salt, string hashedString, string Hashvalue)
         {
@@ -30,6 +31,7 @@ namespace Encryption.MVC.Models
             _outputSaltString = salt;
             _outputHashedString = hashedString;
             _outputHashValue = Hashvalue;
+            _saltLenght = 8;
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using Encryption.Hashing;
+using Encryption.KeyGenerator;
 using Encryption.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -10,13 +11,15 @@ namespace Encryption.MVC.Controllers
         #region fields
         private readonly ILogger<HomeController> _logger;
         private readonly IHashingFactory _hashingFactory;
+        private readonly IKeyGeneratorFactory keyGeneratorFactory;
         #endregion
 
         #region Constructor
-        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory)
+        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory)
         {
             _logger = logger;
             this._hashingFactory = hashingFactory;
+            this.keyGeneratorFactory = keyGeneratorFactory;
         }
         #endregion
 
@@ -37,6 +40,10 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult Hashing(HashingViewModel model)
         {
+            if (model.Input == null)
+            {
+                return View(new HashingViewModel());
+            }
             var outputHashValue = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
             var outputHashString = model.Input;
 
@@ -55,13 +62,17 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult HashingWithSalt(HashingWithSaltViewModel model)
         {
-            var outputHashedString = model.Input;
-            var outputHashValue = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
-            var saltString = "insert salt string here!";
+            if (model.Input == null || model.SaltLength <= 0)
+            {
+                return View(new HashingWithSaltViewModel());
+            }
 
-            ModelState.Clear();
-            
-            return View(new HashingWithSaltViewModel(saltString, outputHashedString, outputHashValue));
+            byte[] salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
+            string[] result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithSalt(model.Input, salt);
+            string outputHashedString = model.Input;            
+
+            ModelState.Clear();            
+            return View(new HashingWithSaltViewModel(result[0], outputHashedString, result[1]));
         }
         #endregion
 
@@ -74,6 +85,11 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult HashingWithKey(HashingWithKeyViewModel model)
         {
+            if (model.Input == null || model.KeyLength <= 0)
+            {
+                return View(new HashingWithKeyViewModel());
+            }
+            
             var outputhashedString = model.Input;
             var outputHashValue = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
             var key = "insert key string here!";

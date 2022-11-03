@@ -6,12 +6,12 @@ namespace Encryption.KeyGenerator
     {
         public byte[] GenerateKey(int KeySize)
         {
-            using (var randomNumberGenerator = new RNGCryptoServiceProvider())
+            var randomNumber = new byte[KeySize];
+            using (var rng = RandomNumberGenerator.Create())
             {
-                var randomNumber = new byte[KeySize];
-                randomNumberGenerator.GetBytes(randomNumber);
-                return randomNumber;
+                rng.GetBytes(randomNumber);
             }
+            return randomNumber;
         }
     }
 }

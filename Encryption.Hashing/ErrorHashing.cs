@@ -10,9 +10,12 @@
             return "Incorrect hashing type.";
         }
 
-        public string GetHashValueWithSalt(string dataToHash, byte[] salt)
+        public string[] GetHashValueWithSalt(string dataToHash, byte[] salt)
         {
-            return "Incorrect hashing type.";
+            var result = new string[2];
+            result[0] = "Incorrect hashing type.";
+            result[1] = "Incorrect hashing type.";
+            return result;
         }
     }
 }

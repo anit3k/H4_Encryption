@@ -24,7 +24,7 @@ namespace Encryption.Hashing
         /// </summary>
         /// <param name="bytes">Byte array to be hashed</param>
         /// <returns>Hashed string</returns>
-        protected string ConvertToString(byte[] bytes)
+        protected string ConvertHashingByteToString(byte[] bytes)
         {
             {
                 StringBuilder builder = new StringBuilder();
@@ -39,6 +39,11 @@ namespace Encryption.Hashing
         protected byte[] GethashingBytesWithSalt(string dataToHash, byte[] salt, HashAlgorithm algorithm)
         {
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash).Concat(salt).ToArray());
+        }
+        
+        protected string ConvertGeneratedKeyToString(byte[] key)
+        {
+            return Convert.ToBase64String(key);
         }
     }
 }

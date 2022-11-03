@@ -6,6 +6,6 @@
     public interface IHashing
     {
         string GetHashValue(string dataToHash);
-        string GetHashValueWithSalt(string dataToHash, byte[] salt);
+        string[] GetHashValueWithSalt(string dataToHash, byte[] salt);
     }
 }

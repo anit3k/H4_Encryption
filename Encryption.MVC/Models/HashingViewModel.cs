@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace Encryption.MVC.Models
 {
@@ -47,11 +48,13 @@ namespace Encryption.MVC.Models
 			get { return _hashingTypes; }
 			set { _hashingTypes = value; }
 		}
-		public string SelectedHashingTypes
+        [Required]
+        public string SelectedHashingTypes
 		{
 			get { return _selectedHashingType; }
 			set { _selectedHashingType = value; }
 		}
+		[Required]
 		public string Input
 		{
 			get { return _input; }

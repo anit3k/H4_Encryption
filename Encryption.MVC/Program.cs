@@ -1,10 +1,12 @@
 using Encryption.Hashing;
+using Encryption.KeyGenerator;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IHashingFactory, HashingFactoryImplementation>();
+builder.Services.AddScoped<IKeyGeneratorFactory, KeyGeneratorFactoryImplementation>();
 
 var app = builder.Build();
 
