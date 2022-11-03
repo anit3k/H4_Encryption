@@ -91,11 +91,11 @@ namespace Encryption.MVC.Controllers
             }
             
             var outputhashedString = model.Input;
-            var outputHashValue = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
-            var key = "insert key string here!";
+            byte[] key = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
+            var result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithKey(model.Input, key);
 
             ModelState.Clear();
-            return View(new HashingWithKeyViewModel(key, outputhashedString, outputHashValue));
+            return View(new HashingWithKeyViewModel(result[0], outputhashedString, result[1]));
         }
         #endregion
 

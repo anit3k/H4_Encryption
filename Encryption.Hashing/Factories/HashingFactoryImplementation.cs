@@ -11,7 +11,7 @@ namespace Encryption.Hashing.Factories
         /// <summary>
         /// Creates a new instance of a algorithm
         /// </summary>
-        /// <param name="hashType">Name of alforithm</param>
+        /// <param name="hashType">Name of algorithm</param>
         /// <returns></returns>
         public IHashing CreateHashing(string hashType)
         {
@@ -28,7 +28,7 @@ namespace Encryption.Hashing.Factories
                 case HashingType.MD5:
                     return new MD5Hashing();
                 default:
-                    return new ErrorHashing();
+                    return new SHA1Hashing();
             }
         }
 
