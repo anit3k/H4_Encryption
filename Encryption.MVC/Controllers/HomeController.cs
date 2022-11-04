@@ -67,7 +67,15 @@ namespace Encryption.MVC.Controllers
                 return View(new HashingWithSaltViewModel());
             }
 
-            byte[] salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
+            string salt = String.Empty;
+            if (model.InputSalt != null)
+            {
+                salt = model.InputSalt;
+            }
+            else
+            {
+                salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
+            }
             string[] result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithSalt(model.Input, salt);
             string outputHashedString = model.Input;            
 
@@ -89,9 +97,17 @@ namespace Encryption.MVC.Controllers
             {
                 return View(new HashingWithKeyViewModel());
             }
-            
+
+            string key = String.Empty;
+            if (model.InputKey != null)
+            {
+                key = model.InputKey;
+            }
+            else
+            {
+                key = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
+            }
             var outputhashedString = model.Input;
-            byte[] key = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
             var result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithKey(model.Input, key);
 
             ModelState.Clear();

@@ -60,13 +60,11 @@ namespace Encryption.MVC.Models
 			get { return _input; }
 			set { _input = value; }
 		}
-
 		public string OutputHashString
 		{
 			get { return _outputHashedString; }
 			set { _outputHashedString = value; }
 		}
-
 		public string OutputHashValue
 		{
 			get { return _outputHashValue; }

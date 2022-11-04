@@ -39,8 +39,24 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="mb-3">
+                            <label asp-for="InputSalt" class="form-label">Salt string: </label>
+                            <input type="text" class="form-control" asp-for="InputSalt" placeholder="Leave empty to generate new salt" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="mb-3">
                             <label asp-for="Input" class="form-label">Input string: </label>
-                            <input type="text" class="form-control" asp-for="Input" />
+                            <input type="text" class="form-control" asp-for="Input" placeholder="Type string to be hashed here" />
                         </div>
                     </div>
                 </div>

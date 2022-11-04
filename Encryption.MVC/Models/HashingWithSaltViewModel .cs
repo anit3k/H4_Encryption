@@ -11,6 +11,7 @@ namespace Encryption.MVC.Models
         private List<SelectListItem> _hashingTypes;
         private string _selectedHashingType;
         private int _saltLenght;
+        private string _inputSalt;
         private string _input;
         private string _outputSaltString;
         private string _outputHashedString;
@@ -62,6 +63,13 @@ namespace Encryption.MVC.Models
             get { return _saltLenght; }
             set { _saltLenght = value; }
         }
+
+        public string InputSalt
+        {
+            get { return _inputSalt; }
+            set { _inputSalt = value; }
+        }
+
         public string Input
         {
             get { return _input; }

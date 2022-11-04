@@ -12,6 +12,7 @@ namespace Encryption.MVC.Models
         private List<SelectListItem> _hashingTypes;
         private string _selectedHashingType;
         private int _keyLength;
+        private string _inputKey;
         private string _input;
         private string _outputKey;
         private string _outputHashedString;
@@ -59,11 +60,15 @@ namespace Encryption.MVC.Models
             get { return _selectedHashingType; }
             set { _selectedHashingType = value; }
         }
-        [Required]
         public int KeyLength
         {
             get { return _keyLength; }
             set { _keyLength = value; }
+        }
+        public string InputKey
+        {
+            get { return _inputKey; }
+            set { _inputKey = value; }
         }
         [Required]
         public string Input
