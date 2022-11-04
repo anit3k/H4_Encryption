@@ -70,23 +70,17 @@ namespace Encryption.Test
         [Test]
         public void SHA1HashingWithSalt_ShouldWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
-
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
             var result = _hashingFactory.CreateHashing("SHA1").GetHashValueWithSalt("test", salt);
             var resultSameValue = _hashingFactory.CreateHashing("SHA1").GetHashValueWithSalt("test", salt);
 
-            var resultConvertedFromString = _hashingFactory.CreateHashing("SHA1").GetHashValueWithSalt("test", Convert.FromBase64String(saltAsString));
             Assert.That(result, Is.EqualTo(resultSameValue));
-            Assert.That(result, Is.EqualTo(resultConvertedFromString));
+            Assert.That(result, Is.EqualTo(result));
         }
 
         public void AllHashingTypesWithSalt_ShouldWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
 
             var hashingTypes = new Dictionary<string, string>();
             hashingTypes.Add("SHA1", "password1234");
@@ -98,7 +92,7 @@ namespace Encryption.Test
             foreach (var item in hashingTypes)
             {
                 var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, Convert.FromBase64String(saltAsString));
+                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
                 Assert.That(result2, Is.EqualTo(result));
                 Assert.That(result2, Is.Not.SameAs(result));
             }
@@ -107,9 +101,7 @@ namespace Encryption.Test
         [Test]
         public void AllHashingTypesWithSalt_ShouldNotWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
 
             var hashingTypes = new Dictionary<string, string>();
             hashingTypes.Add("SHA1", "password1234");
@@ -121,7 +113,7 @@ namespace Encryption.Test
             foreach (var item in hashingTypes)
             {
                 var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
-                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength));
+                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8));
                 var resultWithUpperCase = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt("PASSWORD1234", salt);
                 Assert.That(resultWithAnotherSaltKey, Is.Not.EqualTo(result));
                 Assert.That(resultWithAnotherSaltKey, Is.Not.SameAs(result));
@@ -136,23 +128,18 @@ namespace Encryption.Test
         [Test]
         public void SHA1HashingWithKey_ShouldWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(10);
 
             var result = _hashingFactory.CreateHashing("SHA1").GetHashValueWithKey("test", salt);
             var resultSameValue = _hashingFactory.CreateHashing("SHA1").GetHashValueWithKey("test", salt);
 
-            var resultConvertedFromString = _hashingFactory.CreateHashing("SHA1").GetHashValueWithKey("test", Convert.FromBase64String(saltAsString));
             Assert.That(result, Is.EqualTo(resultSameValue));
-            Assert.That(result, Is.EqualTo(resultConvertedFromString));
+            Assert.That(result, Is.EqualTo(result));
         }
 
         public void AllHashingTypesWithKey_ShouldWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(32);
 
             var hashingTypes = new Dictionary<string, string>();
             hashingTypes.Add("SHA1", "password1234");
@@ -164,7 +151,7 @@ namespace Encryption.Test
             foreach (var item in hashingTypes)
             {
                 var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, Convert.FromBase64String(saltAsString));
+                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
                 Assert.That(result2, Is.EqualTo(result));
                 Assert.That(result2, Is.Not.SameAs(result));
             }
@@ -173,9 +160,7 @@ namespace Encryption.Test
         [Test]
         public void AllHashingTypesWithKéy_ShouldNotWork()
         {
-            var saltLength = 8;
-            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength);
-            var saltAsString = Convert.ToBase64String(salt);
+            var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(16);
 
             var hashingTypes = new Dictionary<string, string>();
             hashingTypes.Add("SHA1", "password1234");
@@ -187,7 +172,7 @@ namespace Encryption.Test
             foreach (var item in hashingTypes)
             {
                 var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
-                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(saltLength));
+                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(16));
                 var resultWithUpperCase = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey("PASSWORD1234", salt);
                 Assert.That(resultWithAnotherSaltKey, Is.Not.EqualTo(result));
                 Assert.That(resultWithAnotherSaltKey, Is.Not.SameAs(result));
