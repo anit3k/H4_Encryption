@@ -2,6 +2,6 @@
 {
     public interface IGenerator
     {
-        public byte[] GenerateKey(int KeySize);
+        public string GenerateKey(int KeySize);
     }
 }

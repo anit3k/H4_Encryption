@@ -6,7 +6,7 @@
     public interface IHashing
     {
         string GetHashValue(string dataToHash);
-        string[] GetHashValueWithSalt(string dataToHash, byte[] salt);
-        string[] GetHashValueWithKey(string dataToHash, byte[] key);
+        string[] GetHashValueWithSalt(string dataToHash, string salt);
+        string[] GetHashValueWithKey(string dataToHash, string key);
     }
 }

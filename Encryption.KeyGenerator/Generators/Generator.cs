@@ -4,14 +4,14 @@ namespace Encryption.KeyGenerator.Generators
 {
     public class Generator : IGenerator
     {
-        public byte[] GenerateKey(int KeySize)
+        public string GenerateKey(int KeySize)
         {
             var randomNumber = new byte[KeySize];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(randomNumber);
             }
-            return randomNumber;
+            return Convert.ToBase64String(randomNumber);
         }
     }
 }

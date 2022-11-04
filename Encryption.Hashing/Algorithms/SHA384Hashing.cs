@@ -14,23 +14,23 @@ namespace Encryption.Hashing.Algorithms
             }
         }
 
-        public string[] GetHashValueWithSalt(string dataToHash, byte[] salt)
+        public string[] GetHashValueWithSalt(string dataToHash, string salt)
         {
             string[] result = new string[2];
-            result[0] = ConvertGeneratedKeyToString(salt);
+            result[0] = salt;
             using (SHA384 algorithm = SHA384.Create())
             {
-                byte[] bytes = GethashingBytesWithSalt(dataToHash, salt, algorithm);
+                byte[] bytes = GethashingBytes(String.Concat(dataToHash, salt), algorithm);
                 result[1] = ConvertHashingByteToString(bytes);
             }
             return result;
         }
 
-        public string[] GetHashValueWithKey(string dataToHash, byte[] key)
+        public string[] GetHashValueWithKey(string dataToHash, string key)
         {
             string[] result = new string[2];
-            result[0] = ConvertGeneratedKeyToString(key);
-            using (var hash = new HMACSHA384(key))
+            result[0] = key;
+            using (var hash = new HMACSHA384(Encoding.UTF8.GetBytes(key)))
             {
                 var bytes = hash.ComputeHash(Encoding.UTF8.GetBytes(dataToHash));
                 result[1] = ConvertHashingByteToString(bytes);

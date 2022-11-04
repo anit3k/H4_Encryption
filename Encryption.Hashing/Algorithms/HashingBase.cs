@@ -34,16 +34,6 @@ namespace Encryption.Hashing.Algorithms
                 }
                 return builder.ToString();
             }
-        }
-
-        protected byte[] GethashingBytesWithSalt(string dataToHash, byte[] salt, HashAlgorithm algorithm)
-        {
-            return algorithm.ComputeHash(Encoding.UTF8.GetBytes(dataToHash).Concat(salt).ToArray());
-        }
-       
-        protected string ConvertGeneratedKeyToString(byte[] key)
-        {
-            return Convert.ToBase64String(key);
-        }
+        }        
     }
 }
