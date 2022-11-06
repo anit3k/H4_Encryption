@@ -13,9 +13,9 @@ namespace Encryption.Hashing.Factories
         /// </summary>
         /// <param name="hashType">Name of algorithm</param>
         /// <returns></returns>
-        public IHashing CreateHashing(string hashType)
+        public IHashing CreateAlgorithm(string hashType)
         {
-            switch (GetEnum<HashingType>(hashType))
+            switch (GetAlgortihmType<HashingType>(hashType))
             {
                 case HashingType.SHA1:
                     return new SHA1Hashing();
@@ -38,7 +38,7 @@ namespace Encryption.Hashing.Factories
         /// <typeparam name="T">Generic</typeparam>
         /// <param name="hashType">string that correspond to enum</param>
         /// <returns>hashing type enum</returns>
-        private T GetEnum<T>(string hashType)
+        private T GetAlgortihmType<T>(string hashType)
         {
             return (T)Enum.Parse(typeof(HashingType), hashType, true);
         }

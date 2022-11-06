@@ -1,0 +1,77 @@
+﻿@model SymmetricViewModel
+
+@{
+    ViewData["Title"] = "Symmetric Encryption";
+}
+<div class="card text-white bg-secondary border-light mb-3" style="max-width: auto;">
+    <div class="card-header text-center border-light">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body mb-3">
+        <p>Do symmetric encryption form here!</p>
+        <!-- INPUT -->
+      @*  <form asp-controller="Home" asp-action="Hashing" method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label class="form-label" asp-for="SelectedHashingTypes">Hashing Algorithm: </label>
+                                    <select class="form-select" asp-for="SelectedHashingTypes" asp-items="Model.HashingTypes">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label asp-for="Input" class="form-label">Input string: </label>
+                                    <input class="form-control" asp-for="Input" placeholder="Type string to be hashed here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Convert to Hash</button>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </form>*@
+        <!-- OUTPUT -->
+        @*<div class="row">
+            <div class="col"></div>
+            <div class="col-8">
+                <div class="">
+                    @if (Model.OutputHashValue != null)
+                    {
+                        <div class="card bg-success border-light">
+                            <div class="card-body">
+                                <h6 class="alert-heading">Input: @Model.OutputHashString</h6>
+                                <h6 class="alert-heading">Hashing value: @Model.OutputHashValue</h6>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>*@
+    </div>
+    <div class="card-footer border-light text-center">
+        <p>Symmetric Encryption - !!!!!</p>
+    </div>
+</div>

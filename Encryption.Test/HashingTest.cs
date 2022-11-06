@@ -19,7 +19,7 @@ namespace Encryption.Test
         [Test]
         public void SHA1Hashing_Succes()
         {
-            var result = _hashingFactory.CreateHashing("SHA1").GetHashValue("test");
+            var result = _hashingFactory.CreateAlgorithm("SHA1").GetHashValue("test");
             var expected = "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"; 
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -27,8 +27,8 @@ namespace Encryption.Test
         [Test]
         public void SHA1Hashing_LowerAndUpper_Differnt_Hashvalues()
         {
-            var resultLowerCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("test");
-            var resultUpperCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("TEST");
+            var resultLowerCase = _hashingFactory.CreateAlgorithm("SHA1").GetHashValue("test");
+            var resultUpperCase = _hashingFactory.CreateAlgorithm("SHA1").GetHashValue("TEST");
 
             var expectedLowerCase = "a94a8fe5ccb19ba61c4c0873d391e987982fbbd3";
             var expectedUpperCase = "984816fd329622876e14907634264e6f332e9fb3";
@@ -41,8 +41,8 @@ namespace Encryption.Test
         [Test]
         public void SHA1Hashing_ShouldNotWork()
         {
-            var resultLowerCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("test");
-            var resultUpperCase = _hashingFactory.CreateHashing("SHA1").GetHashValue("TEST");
+            var resultLowerCase = _hashingFactory.CreateAlgorithm("SHA1").GetHashValue("test");
+            var resultUpperCase = _hashingFactory.CreateAlgorithm("SHA1").GetHashValue("TEST");
             Assert.That(resultUpperCase, Is.Not.EqualTo(resultLowerCase));
         }
 
@@ -58,8 +58,8 @@ namespace Encryption.Test
 
             foreach (var item in hashingTypes)
             {
-                var result = _hashingFactory.CreateHashing(item.Key).GetHashValue(item.Value);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValue(item.Value);
+                var result = _hashingFactory.CreateAlgorithm(item.Key).GetHashValue(item.Value);
+                var result2 = _hashingFactory.CreateAlgorithm(item.Key).GetHashValue(item.Value);
                 Assert.That(result2, Is.EqualTo(result));
                 Assert.That(result2, Is.Not.SameAs(result));
             }
@@ -71,8 +71,8 @@ namespace Encryption.Test
         public void SHA1HashingWithSalt_ShouldWork()
         {
             var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
-            var result = _hashingFactory.CreateHashing("SHA1").GetHashValueWithSalt("test", salt);
-            var resultSameValue = _hashingFactory.CreateHashing("SHA1").GetHashValueWithSalt("test", salt);
+            var result = _hashingFactory.CreateAlgorithm("SHA1").GetHashValueWithSalt("test", salt);
+            var resultSameValue = _hashingFactory.CreateAlgorithm("SHA1").GetHashValueWithSalt("test", salt);
 
             Assert.That(result, Is.EqualTo(resultSameValue));
             Assert.That(result, Is.EqualTo(result));
@@ -91,8 +91,8 @@ namespace Encryption.Test
 
             foreach (var item in hashingTypes)
             {
-                var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
+                var result = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithSalt(item.Value, salt);
+                var result2 = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithSalt(item.Value, salt);
                 Assert.That(result2, Is.EqualTo(result));
                 Assert.That(result2, Is.Not.SameAs(result));
             }
@@ -112,9 +112,9 @@ namespace Encryption.Test
 
             foreach (var item in hashingTypes)
             {
-                var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, salt);
-                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8));
-                var resultWithUpperCase = _hashingFactory.CreateHashing(item.Key).GetHashValueWithSalt("PASSWORD1234", salt);
+                var result = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithSalt(item.Value, salt);
+                var resultWithAnotherSaltKey = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithSalt(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8));
+                var resultWithUpperCase = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithSalt("PASSWORD1234", salt);
                 Assert.That(resultWithAnotherSaltKey, Is.Not.EqualTo(result));
                 Assert.That(resultWithAnotherSaltKey, Is.Not.SameAs(result));
                 Assert.That(resultWithUpperCase, Is.Not.EqualTo(result));
@@ -130,8 +130,8 @@ namespace Encryption.Test
         {
             var salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(10);
 
-            var result = _hashingFactory.CreateHashing("SHA1").GetHashValueWithKey("test", salt);
-            var resultSameValue = _hashingFactory.CreateHashing("SHA1").GetHashValueWithKey("test", salt);
+            var result = _hashingFactory.CreateAlgorithm("SHA1").GetHashValueWithKey("test", salt);
+            var resultSameValue = _hashingFactory.CreateAlgorithm("SHA1").GetHashValueWithKey("test", salt);
 
             Assert.That(result, Is.EqualTo(resultSameValue));
             Assert.That(result, Is.EqualTo(result));
@@ -150,8 +150,8 @@ namespace Encryption.Test
 
             foreach (var item in hashingTypes)
             {
-                var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
-                var result2 = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
+                var result = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithKey(item.Value, salt);
+                var result2 = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithKey(item.Value, salt);
                 Assert.That(result2, Is.EqualTo(result));
                 Assert.That(result2, Is.Not.SameAs(result));
             }
@@ -171,9 +171,9 @@ namespace Encryption.Test
 
             foreach (var item in hashingTypes)
             {
-                var result = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, salt);
-                var resultWithAnotherSaltKey = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(16));
-                var resultWithUpperCase = _hashingFactory.CreateHashing(item.Key).GetHashValueWithKey("PASSWORD1234", salt);
+                var result = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithKey(item.Value, salt);
+                var resultWithAnotherSaltKey = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithKey(item.Value, _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(16));
+                var resultWithUpperCase = _hashingFactory.CreateAlgorithm(item.Key).GetHashValueWithKey("PASSWORD1234", salt);
                 Assert.That(resultWithAnotherSaltKey, Is.Not.EqualTo(result));
                 Assert.That(resultWithAnotherSaltKey, Is.Not.SameAs(result));
                 Assert.That(resultWithUpperCase, Is.Not.EqualTo(result));

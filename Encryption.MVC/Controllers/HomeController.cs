@@ -44,7 +44,7 @@ namespace Encryption.MVC.Controllers
             {
                 return View(new HashingViewModel());
             }
-            var outputHashValue = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValue(model.Input);
+            var outputHashValue = _hashingFactory.CreateAlgorithm(model.SelectedHashingTypes).GetHashValue(model.Input);
             var outputHashString = model.Input;
 
             ModelState.Clear();
@@ -76,7 +76,7 @@ namespace Encryption.MVC.Controllers
             {
                 salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
             }
-            string[] result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithSalt(model.Input, salt);
+            string[] result = _hashingFactory.CreateAlgorithm(model.SelectedHashingTypes).GetHashValueWithSalt(model.Input, salt);
             string outputHashedString = model.Input;            
 
             ModelState.Clear();            
@@ -108,10 +108,44 @@ namespace Encryption.MVC.Controllers
                 key = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
             }
             var outputhashedString = model.Input;
-            var result = _hashingFactory.CreateHashing(model.SelectedHashingTypes).GetHashValueWithKey(model.Input, key);
+            var result = _hashingFactory.CreateAlgorithm(model.SelectedHashingTypes).GetHashValueWithKey(model.Input, key);
 
             ModelState.Clear();
             return View(new HashingWithKeyViewModel(result[0], outputhashedString, result[1]));
+        }
+        #endregion
+
+        #region AsymmetricEncryption
+        [HttpGet]
+        public IActionResult Asymmetric()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Asymmetric(AsymmetricViewModel model)
+        {
+            return View();
+        }
+        #endregion
+
+        #region SymmetricEncryption
+        [HttpGet]
+        public IActionResult Symmetric()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Symmetric(SymmetricViewModel model)
+        {
+            return View();
+        }
+        #endregion
+
+        #region Documentation
+        public IActionResult Documentation()
+        {
+            return View();
         }
         #endregion
 

@@ -7,9 +7,40 @@
         <h1>@ViewData["Title"]</h1>
     </div>
     <div class="card-body mb-3">
-        <p>This song is about shooting blod out of our cock!</p>
+        <h3>Project description</h3>
+        <p>On our 4th school period we learn about Hashing and Encryption.</p>
+        <h4>What is hashing?</h4>
+        <p>
+            Hashing as a algorithm that transform a string value in to a set of characters, that is unreadable or dosent make sense
+            for the human eye. Is a one way encryption, and can not be "unhashed" again as it is. But there is a lot of database out there that consist of a hashing value and the corresponding string value.
+            This can be used to search for the string value of a specific hash value.
+        </p>
+        <p>
+            The must common use of hashing is to encrypt users password or other kind of sensitive information. When the user enters ones password the password is then hashed and compared with the hash value stored in the database. If the 2 hashvalue are equal, then the password is correct.
+            This means that for the hash algorithm to work one string must create the same hashing value every time a specific string value is converted.
+        </p>
+        <p>
+            Hashing can be used in three basic constellations. The first and most simple form is simple just hashing the string directly from string to hash value, this is also the easiest one to crack.
+            You can also used a hashed algorithm with salt, this means that you add a random sequence of chars in the end of a string, and then hash the concatenated string in to a hash value. If this type is used
+            it is recommended to generate i unique salt for each hash. The third is hashing with key, this one is considered the most secured hashing type and this basically means that you create a random key and use that as
+            a parameter when creating the desired algorithm. In both salt or key version of the hashing you need to know the salt/key to verify when comparing the hash value to each other.
+        </p>
+        <p>
+            There is many different hashing algorithms out there, in this project i will use the 5 that is found in System.Security.Cryptography Namespace in .NET 6.0. These five is
+            SHA1, SHA256, SHA384, SHA512 and MD5.
+        </p>
+        <h4>What is Encryption?</h4>
+        <p>
+            Encryption can be Asymmetric or Symmetric, this is what i know for now!! more information to be added when i get further down the course
+            </p>
+        <h4>Software architecture used in this project</h4>
+        <p>In the pursuit for a deeper understanding dependencies and decoupling of classes etc, I have created this with 3 class libraries, this is to make it easier to reuse hashing and encryptions in other application 
+            or project to work on in the future. The goal is to separate the project and only "expose" a simple interface to the UI application, done with dependency injection and factory pattern.
+        </p>
+        <h5>Basic architecture for this project</h5>
+        <img src="~/img/Architecture.jpg" alt="UI & Libraries">
     </div>
     <div class="card-footer border-light text-center">
-        <p>4th School period on ZBC Ringsted</p>
+        <p>4th School period on ZBC Ringsted Software Developer - Hash and Encryption</p>
     </div>
 </div>

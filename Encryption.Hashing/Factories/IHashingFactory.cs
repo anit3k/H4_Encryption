@@ -8,7 +8,6 @@ namespace Encryption.Hashing.Factories
     /// </summary>
     public interface IHashingFactory
     {
-        IHashing CreateHashing(string hashType);
-
+        IHashing CreateAlgorithm(string hashType);
     }
 }
