@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Hashing", "Encry
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Console", "Encryption.Console\Encryption.Console.csproj", "{16D19581-4124-415F-99A7-6FE7C63C85D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.KeyGenerator", "Encryption.KeyGenerator\Encryption.KeyGenerator.csproj", "{A0B4154E-A221-480E-9B4D-9D04003EE510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.KeyGenerator", "Encryption.KeyGenerator\Encryption.KeyGenerator.csproj", "{A0B4154E-A221-480E-9B4D-9D04003EE510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Test", "Encryption.Test\Encryption.Test.csproj", "{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Test", "Encryption.Test\Encryption.Test.csproj", "{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.CaesarCipher", "Encryption.CaesarCipher\Encryption.CaesarCipher.csproj", "{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
