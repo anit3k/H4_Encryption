@@ -17,6 +17,7 @@ namespace Encryption.MVC.Models
 
 		public CaesarCipherViewModel()
 		{
+			//SelectedEncryptDecrypt = new Tuple<string, string>("", true);
 			EncryptOrDecrypt = new List<SelectListItem>();
 			EncryptOrDecrypt.Add(new SelectListItem { Text = "Encrypt", Value = "false" });
 			EncryptOrDecrypt.Add(new SelectListItem { Text = "Decrypt", Value = "true" });

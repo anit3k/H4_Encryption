@@ -130,6 +130,8 @@ namespace Encryption.MVC.Controllers
         public IActionResult CaesarCipher(CaesarCipherViewModel model)
         {
             var result = _caesarCipherFactory.Create().CipherText(model.Input, Convert.ToInt32(model.SelectedChiperIndex), Convert.ToBoolean(model.SelectedEncryptDecrypt));
+            model.SelectedEncryptDecrypt = model.SelectedEncryptDecrypt == "false" ? "Encrypt" : "Decrypt";
+
             _previousCiphers.Add(new PreviousCiphers( result, model.Input, model.SelectedEncryptDecrypt, model.SelectedChiperIndex));
             return View(new CaesarCipherViewModel(_previousCiphers));
         }

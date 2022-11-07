@@ -73,10 +73,16 @@
                         {
                             <div class="card bg-success border-light">
                                 <div class="card-body">
-                                    <h6 class="alert-heading">Type: @item.Type</h6>
-                                    <h6 class="alert-heading">Chiper Index: @item.ChiperIndex</h6>
-                                    <h6 class="alert-heading">Input: @item.Input</h6>
-                                    <h6 class="alert-heading">Hashing value: @item.Output</h6>
+                                    <div class="row">
+                                        <h6 class="alert-heading col-6">Type: @item.Type</h6>
+                                        <h6 class="alert-heading col-6">Chiper Index: @item.ChiperIndex</h6>
+                                    </div>
+                                    <div class="row">
+                                        <h6 class="alert-heading">Input: @item.Input</h6>
+                                    </div>
+                                    <div class="row">
+                                        <h6 class="alert-heading">Hashing value: @item.Output</h6>
+                                    </div>
                                 </div>
                             </div>
                         }
