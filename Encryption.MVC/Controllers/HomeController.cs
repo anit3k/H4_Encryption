@@ -1,4 +1,5 @@
-﻿using Encryption.Hashing.Factories;
+﻿using Encryption.CaesarCipher.Factories;
+using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator.Factories;
 using Encryption.MVC.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,15 +12,18 @@ namespace Encryption.MVC.Controllers
         #region fields
         private readonly ILogger<HomeController> _logger;
         private readonly IHashingFactory _hashingFactory;
-        private readonly IKeyGeneratorFactory keyGeneratorFactory;
+        private readonly IKeyGeneratorFactory _keyGeneratorFactory;
+        private readonly ICaesarCipherFactory _caesarCipherFactory;
+        private static List<PreviousCiphers> _previousCiphers = new List<PreviousCiphers>();
         #endregion
 
         #region Constructor
-        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory)
+        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory, ICaesarCipherFactory caesarCipherFactory)
         {
             _logger = logger;
             this._hashingFactory = hashingFactory;
-            this.keyGeneratorFactory = keyGeneratorFactory;
+            this._keyGeneratorFactory = keyGeneratorFactory;
+            this._caesarCipherFactory = caesarCipherFactory;
         }
         #endregion
 
@@ -74,7 +78,7 @@ namespace Encryption.MVC.Controllers
             }
             else
             {
-                salt = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
+                salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.SaltLength);
             }
             string[] result = _hashingFactory.CreateAlgorithm(model.SelectedHashingTypes).GetHashValueWithSalt(model.Input, salt);
             string outputHashedString = model.Input;            
@@ -105,13 +109,29 @@ namespace Encryption.MVC.Controllers
             }
             else
             {
-                key = keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
+                key = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(model.KeyLength);
             }
             var outputhashedString = model.Input;
             var result = _hashingFactory.CreateAlgorithm(model.SelectedHashingTypes).GetHashValueWithKey(model.Input, key);
 
             ModelState.Clear();
             return View(new HashingWithKeyViewModel(result[0], outputhashedString, result[1]));
+        }
+        #endregion
+
+        #region Caesar Cipher
+        [HttpGet]
+        public IActionResult CaesarCipher()
+        {
+            _previousCiphers.Clear();
+            return View(new CaesarCipherViewModel());
+        }
+        [HttpPost]
+        public IActionResult CaesarCipher(CaesarCipherViewModel model)
+        {
+            var result = _caesarCipherFactory.Create().CipherText(model.Input, Convert.ToInt32(model.SelectedChiperIndex), Convert.ToBoolean(model.SelectedEncryptDecrypt));
+            _previousCiphers.Add(new PreviousCiphers( result, model.Input, model.SelectedEncryptDecrypt, model.SelectedChiperIndex));
+            return View(new CaesarCipherViewModel(_previousCiphers));
         }
         #endregion
 

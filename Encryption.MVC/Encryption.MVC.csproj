@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Encryption.CaesarCipher\Encryption.CaesarCipher.csproj" />
     <ProjectReference Include="..\Encryption.Hashing\Encryption.Hashing.csproj" />
     <ProjectReference Include="..\Encryption.KeyGenerator\Encryption.KeyGenerator.csproj" />
   </ItemGroup>

@@ -1,3 +1,5 @@
+using Encryption.CaesarCipher.Algorithms;
+using Encryption.CaesarCipher.Factories;
 using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator.Factories;
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IHashingFactory, HashingFactoryImplementation>();
 builder.Services.AddScoped<IKeyGeneratorFactory, KeyGeneratorFactoryImplementation>();
+builder.Services.AddScoped<ICaesarCipherFactory, CaesarCipherFactoryImplementation>();
 
 var app = builder.Build();
 
