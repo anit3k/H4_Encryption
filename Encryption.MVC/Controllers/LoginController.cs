@@ -10,14 +10,16 @@ namespace Encryption.MVC.Controllers
 {
     public class LoginController : Controller
     {
+        #region fields
         private readonly IHashingFactory _hashingFactory;
         private readonly IKeyGeneratorFactory _keyGeneratorFactory;
         private readonly DataContext _dataContext;
         private LoginAttemptPublisher _publisher = new LoginAttemptPublisher();
         private LoginAttemptSubscriber _subscriber = new LoginAttemptSubscriber();
+        int _loginFailureCounter;
+        #endregion
 
-
-
+        #region Constructor
         public LoginController(IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory, DataContext dataContext)
         {
             _hashingFactory = hashingFactory;
@@ -25,48 +27,90 @@ namespace Encryption.MVC.Controllers
             _dataContext = dataContext;
             _publisher.Subscribe(_subscriber);
         }
+        #endregion
 
+        #region Index
         [HttpGet]
         public IActionResult Index()
         {
             return View(new LoginViewModel());
         }
+
         [HttpPost]
         public IActionResult Index(LoginViewModel model)
         {
-
-            Data.Models.User? user = _dataContext.Users.FirstOrDefault(x => x.UserName.Equals(model.UserName));
+            User? user = GetUser(model);
             if (user != null)
             {
-                var createNewHash = _hashingFactory.CreateAlgorithm("SHA256").GetHashValueWithSalt(model.Password, user.Salt);
-                if (user.Password.Equals(createNewHash[1]))
+                if (IsUserLocked(model))
                 {
+                    return RedirectToAction("Failure");
+                }
+                else if (user.Password.Equals(GetCorrespondingHash(model, user)))
+                {
+                    CreateNewSaltToUser(model, user);
                     return RedirectToAction("Succes");
                 }
-                else
-                {
-                    _publisher.LoginAttempt(new LoginFailureModel(model.UserName));
-                    var currentFailures = _dataContext.LoginFailures.Where(x => x.Username.Equals(model.UserName));
-                    var attemptsInLastFiveMinuttes = 0;
-
-                    foreach (var failure in currentFailures)
-                    {
-                        if (failure.DateTime > DateTime.Now.AddMinutes(-1) && failure.DateTime <= DateTime.Now )
-                        {
-                            attemptsInLastFiveMinuttes++;
-                        }
-                    }
-
-                    if (attemptsInLastFiveMinuttes >= 3)
-                    {
-                        return RedirectToAction("Failure"); 
-                    }
-                }
+               AddLoginFailureToDb(model);
             }
-
             return View(model);
         }
 
+        private User? GetUser(LoginViewModel model)
+        {
+            return _dataContext.Users.FirstOrDefault(x => x.UserName.Equals(model.UserName));
+        }       
+         
+        private bool IsUserLocked(LoginViewModel model)
+        {
+            var currentFailures = GetCurrentFailures(model);
+            _loginFailureCounter = 0;
+
+            foreach (var failure in currentFailures)
+            {
+                if (IsFailureInLast2Minutes(failure))
+                {
+                    _loginFailureCounter++;
+                }
+            }
+            return IsMaxAttempts();
+        }
+
+        private IQueryable<LoginFailure> GetCurrentFailures(LoginViewModel model)
+        {
+            return _dataContext.LoginFailures.Where(x => x.Username.Equals(model.UserName));
+        }
+
+        private static bool IsFailureInLast2Minutes(LoginFailure failure)
+        {
+            return failure.DateTime > DateTime.Now.AddMinutes(-1) && failure.DateTime <= DateTime.Now;
+        }
+
+        private bool IsMaxAttempts()
+        {
+            return _loginFailureCounter >= 3;
+        }       
+
+        private string GetCorrespondingHash(LoginViewModel model, User user)
+        {
+            return _hashingFactory.CreateAlgorithm("SHA256").GetHashValueWithSalt(model.Password, user.Salt)[1];
+        }
+
+        private void CreateNewSaltToUser(LoginViewModel model, User? user)
+        {
+            user.Salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
+            user.Password = _hashingFactory.CreateAlgorithm("SHA256").GetHashValueWithSalt(model.Password, user.Salt)[1];
+            _dataContext.Update(user);
+            _dataContext.SaveChanges();
+        }
+
+        private void AddLoginFailureToDb(LoginViewModel model)
+        {
+            _publisher.LoginAttempt(new LoginFailureModel(model.UserName));
+        }
+        #endregion
+
+        #region Success/Failure
         [HttpGet]
         public IActionResult Succes()
         {
@@ -77,7 +121,9 @@ namespace Encryption.MVC.Controllers
         {
             return View();
         }
+        #endregion
 
+        #region AddNewUser
         [HttpGet]
         public IActionResult NewUser()
         {
@@ -86,15 +132,20 @@ namespace Encryption.MVC.Controllers
         [HttpPost]
         public IActionResult NewUser(NewUserViewModel model)
         {
+            CreateNewUser(model);
+            return RedirectToAction("Index");
+        }
+
+        private void CreateNewUser(NewUserViewModel model)
+        {
             User newUser = new User();
             newUser.FullName = model.FullName;
             newUser.UserName = model.UserName;
             newUser.Salt = _keyGeneratorFactory.CreateKeyGenerator().GenerateKey(8);
-            //var temp = _hashingFactory.CreateAlgorithm("SHA256").GetHashValueWithSalt(model.Password, newUser.Salt);
             newUser.Password = _hashingFactory.CreateAlgorithm("SHA256").GetHashValueWithSalt(model.Password, newUser.Salt)[1];
             _dataContext.Add(newUser);
             _dataContext.SaveChanges();
-            return RedirectToAction("Index");
         }
+        #endregion
     }
 }
