@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.KeyGenerator", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Test", "Encryption.Test\Encryption.Test.csproj", "{DD32CEF0-EB73-4641-9EA4-19B3F5EF63A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.CaesarCipher", "Encryption.CaesarCipher\Encryption.CaesarCipher.csproj", "{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.CaesarCipher", "Encryption.CaesarCipher\Encryption.CaesarCipher.csproj", "{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.Data", "Encryption.Data\Encryption.Data.csproj", "{E6163193-B457-4B11-843A-183652DAE1D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9220FD3E-6FD0-41D7-9FB6-4914F1C07115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6163193-B457-4B11-843A-183652DAE1D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6163193-B457-4B11-843A-183652DAE1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6163193-B457-4B11-843A-183652DAE1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6163193-B457-4B11-843A-183652DAE1D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

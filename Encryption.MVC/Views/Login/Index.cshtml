@@ -1,0 +1,56 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "Login Site";
+}
+
+<div class="card text-white bg-secondary border-light mb-3" style="max-width: auto;">
+    <div class="card-header text-center border-light">
+        <h1>@ViewData["Title"]</h1>
+    </div>
+    <div class="card-body mb-3">
+        <form asp-controller="Login" asp-action="Index" method="post">
+            <div class="container">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label asp-for="UserName" class="form-label">User Name: </label>
+                                    <input class="form-control" asp-for="UserName" placeholder="Type user name here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label">Input string: </label>
+                                    <input type="password" class="form-control" asp-for="Password" placeholder="Input password here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer border-light text-center">
+        <p>Create new user here!</p>
+    </div>
+</div>

@@ -1,5 +1,5 @@
-using Encryption.CaesarCipher.Algorithms;
 using Encryption.CaesarCipher.Factories;
+using Encryption.Data;
 using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator.Factories;
 
@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IHashingFactory, HashingFactoryImplementation>();
 builder.Services.AddScoped<IKeyGeneratorFactory, KeyGeneratorFactoryImplementation>();
 builder.Services.AddScoped<ICaesarCipherFactory, CaesarCipherFactoryImplementation>();
+builder.Services.AddDbContext<DataContext>();
 
 var app = builder.Build();
 
@@ -30,6 +31,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();

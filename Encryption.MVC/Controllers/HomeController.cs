@@ -1,4 +1,5 @@
 ﻿using Encryption.CaesarCipher.Factories;
+using Encryption.Data;
 using Encryption.Hashing.Factories;
 using Encryption.KeyGenerator.Factories;
 using Encryption.MVC.Models;
@@ -18,7 +19,8 @@ namespace Encryption.MVC.Controllers
         #endregion
 
         #region Constructor
-        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory, ICaesarCipherFactory caesarCipherFactory)
+        public HomeController(ILogger<HomeController> logger, IHashingFactory hashingFactory, IKeyGeneratorFactory keyGeneratorFactory, 
+            ICaesarCipherFactory caesarCipherFactory)
         {
             _logger = logger;
             this._hashingFactory = hashingFactory;
