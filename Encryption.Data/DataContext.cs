@@ -6,6 +6,7 @@ namespace Encryption.Data
     public class DataContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<LoginFailure> LoginFailures { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

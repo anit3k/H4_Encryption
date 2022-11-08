@@ -1,6 +1,6 @@
-﻿@model LoginViewModel
+﻿@model NewUserViewModel
 @{
-    ViewData["Title"] = "Login Site";
+    ViewData["Title"] = "New User";
 }
 
 <div class="card text-white bg-secondary border-light mb-3" style="max-width: auto;">
@@ -8,7 +8,7 @@
         <h1>@ViewData["Title"]</h1>
     </div>
     <div class="card-body mb-3">
-        <form asp-controller="Login" asp-action="Index" method="post">
+        <form asp-controller="Login" asp-action="NewUser" method="post">
             <div class="container">
                 <div class="row">
                     <div class="col"></div>
@@ -30,8 +30,36 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="mb-3">
-                                    <label asp-for="Password" class="form-label">Input string: </label>
+                                    <label asp-for="FullName" class="form-label">Full Name: </label>
+                                    <input class="form-control" asp-for="FullName" placeholder="Type user name here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label">Password: </label>
                                     <input type="password" class="form-control" asp-for="Password" placeholder="Input password here" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-8">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="mb-3">
+                                    <label asp-for="PasswordRepeat" class="form-label">Password: </label>
+                                    <input type="password" class="form-control" asp-for="PasswordRepeat" placeholder="Input password here" />
                                 </div>
                             </div>
                         </div>
@@ -51,8 +79,6 @@
         </form>
     </div>
     <div class="card-footer border-light text-center">
-        <div class="container">
-            Create new <a asp-area="" asp-controller="Login" asp-action="NewUSer">user here.</a>
-        </div>
+        <p>Create new user here!</p>
     </div>
 </div>

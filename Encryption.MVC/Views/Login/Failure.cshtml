@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Login Site";
+    ViewData["Title"] = "failure";
 }
 
 <div class="card text-white bg-secondary border-light mb-3" style="max-width: auto;">
@@ -12,7 +12,8 @@
             <div class="col-8">
                 <div class="card bg-danger border-light">
                     <div class="card-body">
-                        <h1 class="alert-heading">Access Denied! :)</h1>
+                        <h3 class="alert-heading">Access Denied!</h3>
+                        <p>Your Account has been locked for xxx time!</p>
                     </div>
                 </div>
             </div>
@@ -20,6 +21,8 @@
         </div>
     </div>
     <div class="card-footer border-light text-center">
-        <p>Create new user here!</p>
+        <div class="container">
+            Back to <a asp-area="" asp-controller="Login" asp-action="Index">login</a>
+        </div>
     </div>
 </div>
