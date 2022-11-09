@@ -40,7 +40,7 @@ namespace Encryption.MVC.Controllers
         public IActionResult Index(LoginViewModel model)
         {
             User? user = GetUser(model);
-            if (user != null)
+            if (user !=  null)
             {
                 if (IsUserLocked(model))
                 {
@@ -51,7 +51,7 @@ namespace Encryption.MVC.Controllers
                     CreateNewSaltToUser(model, user);
                     return RedirectToAction("Succes");
                 }
-               AddLoginFailureToDb(model);
+                AddLoginFailureToDb(model);
             }
             return View(model);
         }
@@ -59,8 +59,8 @@ namespace Encryption.MVC.Controllers
         private User? GetUser(LoginViewModel model)
         {
             return _dataContext.Users.FirstOrDefault(x => x.UserName.Equals(model.UserName));
-        }       
-         
+        }
+
         private bool IsUserLocked(LoginViewModel model)
         {
             var currentFailures = GetCurrentFailures(model);
@@ -89,7 +89,7 @@ namespace Encryption.MVC.Controllers
         private bool IsMaxAttempts()
         {
             return _loginFailureCounter >= 3;
-        }       
+        }
 
         private string GetCorrespondingHash(LoginViewModel model, User user)
         {
