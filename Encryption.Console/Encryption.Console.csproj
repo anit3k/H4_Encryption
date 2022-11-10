@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Encryption.Asymmetric\Encryption.Asymmetric.csproj" />
     <ProjectReference Include="..\Encryption.Data\Encryption.Data.csproj" />
     <ProjectReference Include="..\Encryption.Hashing\Encryption.Hashing.csproj" />
     <ProjectReference Include="..\Encryption.KeyGenerator\Encryption.KeyGenerator.csproj" />

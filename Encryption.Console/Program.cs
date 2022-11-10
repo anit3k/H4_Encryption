@@ -1,7 +1,31 @@
 ﻿// Used as playground for testing, faster and easier then running .net core mvc
+using Encryption.Asymmetric.Factories;
 using Encryption.KeyGenerator.Factories;
 using Encryption.Symmetric.Factories;
 using System.Security.Cryptography;
+
+
+
+#region RSA
+IRSAFactory rSAFactory = new RSAFactoryImplementation();
+var keysGenerates = rSAFactory.Create().GenerateNewKeySet();
+#endregion
+
+var rSA = new RSAFactoryImplementation();
+Dictionary<string, string> keys = rSA.Create().GenerateNewKeySet();
+string data = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun";
+string encrypted = rSA.Create().Encrypt(keys["Public"], data);
+string decrypted = rSA.Create().Decrypt(keys["Private"], Convert.FromBase64String(encrypted));
+
+var rSANew = new RSAFactoryImplementation();
+Dictionary<string, string> keysNew = rSANew.Create().GenerateNewKeySet();
+string dataNew = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun";
+string encryptedNew = rSANew.Create().Encrypt(keysNew["Public"], dataNew);
+string decryptedNew = rSANew.Create().Decrypt(keysNew["Private"], Convert.FromBase64String(encryptedNew));
+
+
+
+#region Symmetric
 
 IKeyGeneratorFactory keyGeneratorFactory = new KeyGeneratorFactoryImplementation();
 ISymmetricFactory symmetricFactory = new SymmetricFactoryImplementation();
@@ -53,3 +77,5 @@ static void TestTripleDES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFa
     Console.WriteLine("Decrypted: " + decryptedMessage);
     Console.WriteLine();
 }
+
+#endregion
