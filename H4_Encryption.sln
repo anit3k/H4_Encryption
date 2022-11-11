@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Symmetric", "Enc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Asymmetric", "Encryption.Asymmetric\Encryption.Asymmetric.csproj", "{2557B0CB-7082-44E8-A8E1-148479E30723}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.WebSocketClient", "Encryption.WebSocketClient\Encryption.WebSocketClient.csproj", "{3CABA5FC-3E44-43F6-A44F-C69A068C949C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.WebServer", "Encryption.WebServer\Encryption.WebServer.csproj", "{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.WebClient", "Encryption.WebClient\Encryption.WebClient.csproj", "{CEE3621A-B379-479F-9D9E-FCDEB107470B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,14 +67,14 @@ Global
 		{2557B0CB-7082-44E8-A8E1-148479E30723}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2557B0CB-7082-44E8-A8E1-148479E30723}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2557B0CB-7082-44E8-A8E1-148479E30723}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3CABA5FC-3E44-43F6-A44F-C69A068C949C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CABA5FC-3E44-43F6-A44F-C69A068C949C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CABA5FC-3E44-43F6-A44F-C69A068C949C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CABA5FC-3E44-43F6-A44F-C69A068C949C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

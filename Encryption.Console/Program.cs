@@ -3,17 +3,18 @@ using Encryption.Asymmetric.Factories;
 using Encryption.KeyGenerator.Factories;
 using Encryption.Symmetric.Factories;
 using System.Security.Cryptography;
+using System.Text;
 
 
 
 #region RSA
 IRSAFactory rSAFactory = new RSAFactoryImplementation();
 var keysGenerates = rSAFactory.Create().GenerateNewKeySet();
-#endregion
 
 var rSA = new RSAFactoryImplementation();
 Dictionary<string, string> keys = rSA.Create().GenerateNewKeySet();
-string data = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun";
+string data = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker. asdasdasdasdasdasdasdasdas1234567";
+var sizw = Encoding.Unicode.GetBytes(data);
 string encrypted = rSA.Create().Encrypt(keys["Public"], data);
 string decrypted = rSA.Create().Decrypt(keys["Private"], Convert.FromBase64String(encrypted));
 
@@ -22,6 +23,7 @@ Dictionary<string, string> keysNew = rSANew.Create().GenerateNewKeySet();
 string dataNew = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun";
 string encryptedNew = rSANew.Create().Encrypt(keysNew["Public"], dataNew);
 string decryptedNew = rSANew.Create().Decrypt(keysNew["Private"], Convert.FromBase64String(encryptedNew));
+#endregion
 
 
 

@@ -5,12 +5,9 @@ namespace Encryption.Test
 {
     public class AsymmetricTest
     {
-        //IRSAFactory rSA;
         [SetUp]
         public void Setup()
         {
-            var rSA = new RSAFactoryImplementation();
-            //_service = rSA.Create();
         }
 
         [Test]
