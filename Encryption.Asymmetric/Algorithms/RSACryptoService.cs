@@ -33,7 +33,7 @@ namespace Encryption.Asymmetric.Algorithms
             cspParams.KeyContainerName = CONTAINER_NAME;
             cspParams.Flags = CspProviderFlags.NoFlags;
             cspParams.ProviderName = "Microsoft Strong Cryptographic Provider";
-            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(4096, cspParams))
+            using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048, cspParams))
             {
                 //rsa.KeySize = 4096;
                 newKeys2.Add("Private", rsa.ToXmlString(true));

@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Encryption.Asymmetric\Encryption.Asymmetric.csproj" />
+    <ProjectReference Include="..\Encryption.Symmetric\Encryption.Symmetric.csproj" />
+  </ItemGroup>
+
 </Project>
