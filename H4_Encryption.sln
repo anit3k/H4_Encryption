@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Symmetric", "Enc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.Asymmetric", "Encryption.Asymmetric\Encryption.Asymmetric.csproj", "{2557B0CB-7082-44E8-A8E1-148479E30723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.WebServer", "Encryption.WebServer\Encryption.WebServer.csproj", "{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.WebServer", "Encryption.WebServer\Encryption.WebServer.csproj", "{6445DCB7-BB82-4A7E-AB22-7DD4D18DDACC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.WebClient", "Encryption.WebClient\Encryption.WebClient.csproj", "{CEE3621A-B379-479F-9D9E-FCDEB107470B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.WebClient", "Encryption.WebClient\Encryption.WebClient.csproj", "{CEE3621A-B379-479F-9D9E-FCDEB107470B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

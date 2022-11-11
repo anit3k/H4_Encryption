@@ -24,12 +24,11 @@ using (var ws = new ClientWebSocket())
     {
         switch (workflow)
         {
-            case 1: // send hello to server, and retrieve answer
-                Console.WriteLine("User: Send Hello");
+            case 1: 
+                // send hello to server, and retrieve answer
+                Console.WriteLine("Press Key: Send Hello");
                 Console.ReadKey();
-
                 await ws.SendAsync(Encoding.ASCII.GetBytes($"CLIENT 1: Hey Server"), WebSocketMessageType.Text, true, CancellationToken.None);
-                Console.WriteLine("CLIENT 1: Hey Server");
 
                 var response0 = await ws.ReceiveAsync(buffer, CancellationToken.None);
                 if (Encoding.ASCII.GetString(buffer, 0, response0.Count).Contains("SERVER 2"))
@@ -38,34 +37,32 @@ using (var ws = new ClientWebSocket())
                     workflow = 3;
                 }
                 break;
-            case 3: // send RSA public key, retrive AES keys from server
-                Console.WriteLine("User: Send public key");
+            case 3: 
+                // send RSA public key, retrieve AES keys from server
+                Console.WriteLine("Press Key: Send public key");
                 Console.ReadKey();
-
                 await ws.SendAsync(Encoding.ASCII.GetBytes(rsaKeySet["Public"]), WebSocketMessageType.Text, true, CancellationToken.None);
-                Console.WriteLine("CLIENT 3: Sending public key <<RSA Key>>");
 
                 var response1 = await ws.ReceiveAsync(buffer, CancellationToken.None);
                 if (Encoding.ASCII.GetString(buffer, 0, response1.Count).Contains("SERVER 4"))
-                {                    
-                    Console.WriteLine("Client 3: Decrypting IV and Key for AES");
+                {
+                    Console.WriteLine("Encrypted IV and  Key " + Encoding.ASCII.GetString(buffer, 0, response1.Count));
                     var serverResponse =  Encoding.ASCII.GetString(buffer, 0, response1.Count).Substring(9); //Encrypted IV and Key from server
                     var decrypted = rsaService.Create().Decrypt(rsaKeySet["Private"], Convert.FromBase64String(serverResponse)); // Decrypt AES Keys
-                    Console.WriteLine("Client 3: Splitting Iv and Key");
+                    Console.WriteLine("Decrypted IV and Key SERVER 4: " + decrypted);
                     var ivAndKey = decrypted.Split(";"); // splitting string iv and key
                     ivKey = ivAndKey[0];
                     aesKey = ivAndKey[1];
                     workflow = 5;
                 }
                 break;
-            case 5: // send AES encrypted message, and retrieve AES encrypted answer 
+            case 5: 
+                // send AES encrypted message, and retrieve AES encrypted answer 
                 Console.WriteLine("Press Key: Send encrypted AES content");
                 Console.ReadKey();
-
-                Console.WriteLine("CLIENT 5: Encrypting message and sending to server");
                 var aesEncryptedMessageToServer = aesService.Encrypt(new CyptographicSetup()
                 {
-                    Message = "The can you please give me the lottery numbers for the weekend?",
+                    Message = "Can you please give me the lottery numbers for the weekend?",
                     IV = ivKey,
                     Key = aesKey,
                     CipherMode = CipherMode.ECB,
@@ -76,6 +73,7 @@ using (var ws = new ClientWebSocket())
                 var response2 = await ws.ReceiveAsync(buffer, CancellationToken.None);
                 if (Encoding.ASCII.GetString(buffer, 0, response2.Count).Contains("SERVER 6"))
                 {
+                    Console.WriteLine("Encrypted " + Encoding.ASCII.GetString(buffer, 0, response2.Count));
                     var aesDecryptedMessageFromServer = aesService.Decrypt(new CyptographicSetup()
                     {
                         Message = Encoding.ASCII.GetString(buffer, 0, response2.Count).Substring(9),
@@ -84,14 +82,14 @@ using (var ws = new ClientWebSocket())
                         CipherMode = CipherMode.ECB,
                         PaddingMode = PaddingMode.PKCS7,
                     });
-                    Console.WriteLine("SERVER: "+aesDecryptedMessageFromServer);
+                    Console.WriteLine("Decrypted SERVER 6: "+aesDecryptedMessageFromServer);
                     workflow = 7;
                 }
                 break;
-            case 7: //send new AES encrypted message
+            case 7: 
+                //send new AES encrypted message
                 Console.WriteLine("Press Key: Send encrypted AES content");
                 Console.ReadKey();
-
                 var aesEncryptedReplyMessageToServer = aesService.Encrypt(new CyptographicSetup()
                 {
                     Message = "Thank you, i will now play the lottery",
@@ -101,11 +99,11 @@ using (var ws = new ClientWebSocket())
                     PaddingMode = PaddingMode.PKCS7,
                 });
                 await ws.SendAsync(Encoding.ASCII.GetBytes("CLIENT 7: " + aesEncryptedReplyMessageToServer), WebSocketMessageType.Text, true, CancellationToken.None);
-                Console.WriteLine("CLIENT 7: Sending encrypted reply to server, closing connection");
 
                 var response3 = await ws.ReceiveAsync(buffer, CancellationToken.None);
                 if (Encoding.ASCII.GetString(buffer, 0, response3.Count).Contains("SERVER 8"))
                 {
+                    Console.WriteLine("Encrypted" + Encoding.ASCII.GetString(buffer, 0, response3.Count));
                     var aesDecryptedMessageFromServer = aesService.Decrypt(new CyptographicSetup()
                     {
                         Message = Encoding.ASCII.GetString(buffer, 0, response3.Count).Substring(9),
@@ -114,11 +112,11 @@ using (var ws = new ClientWebSocket())
                         CipherMode = CipherMode.ECB,
                         PaddingMode = PaddingMode.PKCS7,
                     });
-                    Console.WriteLine("SERVER: " + aesDecryptedMessageFromServer);
+                    Console.WriteLine("Decrypted SERVER: " + aesDecryptedMessageFromServer);
                     Console.WriteLine("Terminate connection");
+                    Console.ReadKey();
                 }
                 break;
-
             default:
                 Console.WriteLine("Close connection");
                 break;

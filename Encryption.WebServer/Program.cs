@@ -37,30 +37,31 @@ app.Map("/ws", async context =>
                 var response0 = await webSocket.ReceiveAsync(buffer, CancellationToken.None);
                 switch (workflow)
                 {
-                    case 2: // request RSA public key
+                    case 2: 
+                        // request RSA public key
                         if (Encoding.ASCII.GetString(buffer, 0, response0.Count).Contains("CLIENT 1"))
                         {
                             Console.WriteLine(Encoding.ASCII.GetString(buffer, 0, response0.Count));
-
-                            await webSocket.SendAsync(Encoding.ASCII.GetBytes($"SERVER 2: Hello Client, send public RSA key"), WebSocketMessageType.Text, true, CancellationToken.None);
-                            Console.WriteLine("SERVER 2: Hello Client, send public RSA key");
+                            await webSocket.SendAsync(Encoding.ASCII.GetBytes($"SERVER 2: Hello Client, send public RSA key"), WebSocketMessageType.Text, true, CancellationToken.None);                           
                             workflow = 4;
                         }
                         break;
-                    case 4: // retrieve RSA public key, and send back AES keys
+                    case 4: 
+                        // retrieve RSA public key, and send back AES keys
                         if (Encoding.ASCII.GetString(buffer, 0, response0.Count).Contains("<RSAKeyValue>"))
                         {
                             var clientResponse = Encoding.ASCII.GetString(buffer, 0, response0.Count);
-                            Console.WriteLine("SERVER 4: Retriving client public key, and encrypt IV and Key for AES");
+                            Console.WriteLine("Public RSA key Client 3: " + clientResponse);
                             var encryptedIvKey = rsaService.Create().Encrypt(clientResponse, ivKey + ";" + aesKey);
                             await webSocket.SendAsync(Encoding.ASCII.GetBytes($"SERVER 4: " + encryptedIvKey), WebSocketMessageType.Text, true, CancellationToken.None);
-                            Console.WriteLine("SERVER 4: Sending AES IV and Key");
                             workflow = 6;
                         }
                         break;
-                    case 6: // retrive AES encrypted message, and reply with AES encrypted answer
+                    case 6: 
+                        // retrive AES encrypted message, and reply with AES encrypted answer
                         if (Encoding.ASCII.GetString(buffer, 0, response0.Count).Contains("CLIENT 5"))
                         {
+                            Console.WriteLine("Encrypted Client 5: " + Encoding.ASCII.GetString(buffer, 0, response0.Count));
                             var aesDecryptedMessageFromclient = aesService.Decrypt(new CyptographicSetup()
                             {
                                 Message = Encoding.ASCII.GetString(buffer, 0, response0.Count).Substring(9),
@@ -69,8 +70,7 @@ app.Map("/ws", async context =>
                                 CipherMode = CipherMode.ECB,
                                 PaddingMode = PaddingMode.PKCS7,
                             });
-                            Console.WriteLine("Client: " + aesDecryptedMessageFromclient);
-                            Console.WriteLine("SERVER: Encrypt reply and send");
+                            Console.WriteLine("Decrypted Client 5: " + aesDecryptedMessageFromclient);
 
                             var aesEncryptedMessageToClient = aesService.Encrypt(new CyptographicSetup()
                             {
@@ -80,16 +80,14 @@ app.Map("/ws", async context =>
                                 CipherMode = CipherMode.ECB,
                                 PaddingMode = PaddingMode.PKCS7,
                             });
-
                             await webSocket.SendAsync(Encoding.ASCII.GetBytes($"SERVER 6: " + aesEncryptedMessageToClient), WebSocketMessageType.Text, true, CancellationToken.None);
-                            Console.WriteLine("SERVER 6: Sending encrypted response");
-
                             workflow = 8;
                         }
                         break;
                     case 8:
                         if (Encoding.ASCII.GetString(buffer, 0, response0.Count).Contains("CLIENT 7"))
                         {
+                            Console.WriteLine("Encrypted Client 7: " + Encoding.ASCII.GetString(buffer, 0, response0.Count));
                             var aesDecryptedMessageFromclient = aesService.Decrypt(new CyptographicSetup()
                             {
                                 Message = Encoding.ASCII.GetString(buffer, 0, response0.Count).Substring(9),
@@ -98,7 +96,7 @@ app.Map("/ws", async context =>
                                 CipherMode = CipherMode.ECB,
                                 PaddingMode = PaddingMode.PKCS7,
                             });
-                            Console.WriteLine("Client: " + aesDecryptedMessageFromclient);
+                            Console.WriteLine("Decrypted Client 7: " + aesDecryptedMessageFromclient);
 
                             var aesEncryptedMessageToClient = aesService.Encrypt(new CyptographicSetup()
                             {
@@ -108,9 +106,7 @@ app.Map("/ws", async context =>
                                 CipherMode = CipherMode.ECB,
                                 PaddingMode = PaddingMode.PKCS7,
                             });
-
                             await webSocket.SendAsync(Encoding.ASCII.GetBytes($"SERVER 8; " + aesEncryptedMessageToClient), WebSocketMessageType.Text, true, CancellationToken.None);
-                            Console.WriteLine("SERVER 8: reply");
                             Console.WriteLine("Terminate connection");
                         }
                         break;
