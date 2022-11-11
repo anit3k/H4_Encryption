@@ -9,7 +9,6 @@ namespace Encryption.Asymmetric.Algorithms
         {
             using (RSACryptoServiceProvider rsa = new RSACryptoServiceProvider())
             {
-                //rsa.
                 rsa.FromXmlString(publicKeyXML);
                 var temp = rsa.Encrypt(Encoding.UTF8.GetBytes(dataToDycript), false);
                 return Convert.ToBase64String(temp);
