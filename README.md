@@ -1,4 +1,4 @@
-<a name="readme-top">Index</a>
+<a name="readme-top"></a>
 
 # Encryption on 4th School period
 
@@ -17,7 +17,7 @@ specific encryption/encoding works.
 <details>
   <ol>
     <li>
-      <a href="#Encoding/Decoding-Hashing-Library">Hashing, simple, salty and secret!</a>
+      <a href="#Encoding-Decoding-Hashing-Library">Hashing, simple, salty and secret!</a>
       <ul>
         <li><a href="#Key-Generator-Library">Key Generator Library</a></li>
         <li><a href="#-ASP.NET-Core-6-MVC">MVC as UI for Hashing</a></li>
@@ -62,7 +62,7 @@ specific encryption/encoding works.
 
 <hr>
 
-### Encoding/Decoding Hashing Library
+### Encoding Decoding Hashing Library
 
 * <a href="https://github.com/anit3k/H4_Encryption/tree/main/Encryption.Hashing">Hashing Repo</a> <br>
 In this project you will find 3 types of encoding.
