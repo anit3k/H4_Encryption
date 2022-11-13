@@ -3,6 +3,11 @@ using System.Security.Cryptography;
 
 namespace Encryption.Symmetric.Models
 {
+    /// <summary>
+    /// This "model" is used to setup symmetric algorithm with CipherMode, Padding, keys and message/string
+    /// to be encrypted/decrypted. This class also contains internal methods to ensure correct conversion of 
+    /// base64 strings in the encrypt/decrypt algorithm methods.
+    /// </summary>
     public class CyptographicSetup
     {
         public CyptographicSetup()

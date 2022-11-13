@@ -26,7 +26,13 @@ namespace Encryption.SignalRHub.Hubs
             _aesService = aes.CreateAlgortihm("AES");
             _infoModel = model;
         }
-
+        
+        /// <summary>
+        /// This task receives encrypted messages from users, and sends back encrypted message
+        /// </summary>
+        /// <param name="user">User name</param>
+        /// <param name="message">encrypted message</param>
+        /// <returns>encrypted response</returns>
         public async Task SendEncryptedMessage(string user, string message)
         {
             Console.WriteLine(user + ": " + message);
@@ -40,6 +46,11 @@ namespace Encryption.SignalRHub.Hubs
             await Clients.All.SendAsync("MessageReceived", "Server", encrypted);
         }
 
+        /// <summary>
+        /// Task to recieve public RSA key, to encrypt AES key-set for user to decrypt.
+        /// </summary>
+        /// <param name="key">RSA public key</param>
+        /// <returns></returns>
         public async Task ReceivePublicRSAKey(string key)
         {
             if (key.Contains("<RSAKeyValue>"))

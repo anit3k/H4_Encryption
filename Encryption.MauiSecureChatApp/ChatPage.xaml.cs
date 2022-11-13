@@ -29,12 +29,12 @@ public partial class ChatPage : ContentPage
         // "observers" methods from signalR hub
         _hubConnection.On<string, string>("MessageReceived", async (user, message) =>
         {
-            await Task.Run(async () => await UpdataChat(user, message));
+            await Task.Run(async () => await DecryptMessageFromServer(user, message));
         });
 
         _hubConnection.On<string>("EncryptedAesKey", async (keys) =>
         {
-            await Task.Run(async () => await AddAesKeys(keys));
+            await Task.Run(async () => await DecryptAESKeyset(keys));
             chatMessages.Text = _messages;
         });
 
@@ -64,15 +64,23 @@ public partial class ChatPage : ContentPage
         _publicRSAKey = key["Public"];
     }
 
+    /// <summary>
+    /// Button to send RSA public key to SignalR hub
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void sendPublicKeyBtn_Clicked(object sender, EventArgs e)
     {
         await SendPublicKeyToHub(_publicRSAKey);
     }
 
+    /// <summary>
+    /// Button to send encrypted message to hub
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
     private async void sendChatBtn_Clicked(object sender, EventArgs e)
     {
-        
-
         _aesContainer.Message = userMessage.Text;
         var encrypted = _aesService.Encrypt(_aesContainer);
 
@@ -81,17 +89,24 @@ public partial class ChatPage : ContentPage
 
         userMessage.Text = String.Empty;
         chatMessages.Text = _messages;
-
     }
 
-    private async  Task UpdataChat(string user, string message)
+    /// <summary>
+    /// Decrypt message from server with the AES Keys received
+    /// </summary>
+    /// <param name="user">string of user name</param>
+    /// <param name="message">message to be decrypted</param>
+    private async  Task DecryptMessageFromServer(string user, string message)
     {
         _aesContainer.Message = message;
         var decrypted = _aesService.Decrypt(_aesContainer);
-        _messages += Environment.NewLine +decrypted;
-        
+        _messages += Environment.NewLine +decrypted;        
     }
 
+    /// <summary>
+    /// Task to send users RSA public key to server/hub
+    /// </summary>
+    /// <param name="publicKey">RSA public key in XML format</param>
     private async Task SendPublicKeyToHub(string publicKey)
     {
         _messages += Environment.NewLine + "System: public key send to server.";
@@ -99,7 +114,11 @@ public partial class ChatPage : ContentPage
         await _hubConnection.InvokeCoreAsync("ReceivePublicRSAKey", args: new[] { publicKey });
     }
 
-    private async Task AddAesKeys(string encryptedKeys)
+    /// <summary>
+    /// Task to decrypt and ad key set to AES setup container
+    /// </summary>
+    /// <param name="encryptedKeys">encrypted message from hub with AES keys</param>
+    private async Task DecryptAESKeyset(string encryptedKeys)
     {
         var decrypted = _rsaService.Create().Decrypt(_privatRSAKey, Convert.FromBase64String(encryptedKeys));
 

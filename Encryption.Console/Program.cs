@@ -8,7 +8,7 @@ using System.Text;
 
 
 
-#region RSA
+#region RSA asymmetric encryption PoC
 IRSAFactory rSAFactory = new RSAFactoryImplementation();
 var keysGenerates = rSAFactory.Create().GenerateNewKeySet();
 
@@ -28,7 +28,7 @@ string decryptedNew = rSANew.Create().Decrypt(keysNew["Private"], Convert.FromBa
 
 
 
-#region Symmetric
+#region Symmetric TripleDES and AES PoC
 
 IKeyGeneratorFactory keyGeneratorFactory = new KeyGeneratorFactoryImplementation();
 ISymmetricFactory symmetricFactory = new SymmetricFactoryImplementation();

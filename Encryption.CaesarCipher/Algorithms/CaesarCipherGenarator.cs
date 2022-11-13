@@ -55,7 +55,7 @@ namespace Encryption.CaesarCipher.Algorithms
         /// Gets the current index from the alphabet
         /// </summary>
         /// <param name="character">character in string format to find the current index in the alphabet</param>
-        /// <returns>interger of current alphabet</returns>
+        /// <returns>integer of current alphabet</returns>
         private Tuple<List<string>, int> GetIndexFromCorrectAlphabet(string character)
         {
             if (_alphabetLower.IndexOf(character) != -1)

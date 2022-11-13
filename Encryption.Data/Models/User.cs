@@ -1,5 +1,8 @@
 ﻿namespace Encryption.Data.Models
 {
+    /// <summary>
+    /// Model used to map to table, part of the EF Core data library
+    /// </summary>
     public class User
     {
         public int Id { get; set; }
