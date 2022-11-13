@@ -13,48 +13,50 @@ specific encryption/encoding works.
 
 ## Assignments
 
-
+<!-- TABLE OF CONTENTS -->
+<details>
   <ol>
     <li>
-      <a href="### Encryption.Hashing Library">Hashing, simple, salty and secret!</a>
+      <a href="#Encoding/Decoding-Hashing-Library">Hashing, simple, salty and secret!</a>
       <ul>
-        <li><a href="### Key Generator Library">Key Generator Library</a></li>
-        <li><a href="### ASP.NET Core 6 MVC">MVC as UI for Hashing</a></li>
+        <li><a href="#Key-Generator-Library">Key Generator Library</a></li>
+        <li><a href="#-ASP.NET-Core-6-MVC">MVC as UI for Hashing</a></li>
       </ul>
     </li>
     <li>
-      <a href="### Ceaser Cipher Library">Caeser, only a true roman can read it!</a>
+      <a href="#Ceaser-Cipher-Library">Caeser, only a true roman can read it!</a>
       <ul>
-        <li><a href="### ASP.NET Core 6 MVC">MVC as UI for Hashing</a></li>
+        <li><a href="#ASP.NET-Core-6-MVC">MVC as UI for Hashing</a></li>
       </ul>
     </li>
     <li>
-      <a href="### ASP.NET Core 6 MVC">Secure Password uses hashing lib, data lib and MVC as UI</a>
+      <a href="#ASP.NET-Core-6-MVC">Secure Password uses hashing lib, data lib and MVC as UI</a>
       <ul>
-        <li><a href="### Encryption.Hashing Library">Hashing</a></li>
-        <li><a href="### Key Generator Library">Key Generator Library</a></li>
-        <li><a href="### Entity Framework Core Data Project">EF Core MSSQL</a></li>
-        <li><a href="### ASP.NET Core 6 MVC">MVC as UI for Hashing</a></li>
+        <li><a href="#Encoding/Decoding-Hashing-Library">Hashing</a></li>
+        <li><a href="#Key-Generator-Library">Key Generator Library</a></li>
+        <li><a href="#Entity-Framework-Core-Data-Project">EF Core MSSQL</a></li>
+        <li><a href="#ASP.NET-Core-6-MVC">MVC as UI for Hashing</a></li>
       </ul>
     </li>
     <li>
-      <a href="### Symmetric Encryption Library">Symmetric Algorithm</a>
+      <a href="#Symmetric-Encryption-Library">Symmetric Algorithm</a>
       <ul>
-        <li><a href="### Key Generator Library">Key Generator Library</a></li>
+        <li><a href="#Key-Generator-Library">Key Generator Library</a></li>
       </ul>
     </li>
     <li>
-      <a href="### Asymmetric Encryption Library">Asymmetric Algorithm</a>      
+      <a href="#Asymmetric-Encryption-Library">Asymmetric Algorithm</a>      
     </li>
     <li>
-      <a href="### Asymmetric Encryption Library">Hybrid Encryption</a>
+      <a href="#-Asymmetric-Encryption-Library">Hybrid Encryption</a>
       <ul>
-        <li><a href="#### WebSocket Server/Client PoC">Websocket hybrid PoC</a></li>
-        <li><a href="#### .NET 6 Core Web Project SignalR /server">SignalR Hub</a></li>
-        <li><a href="#### .NET 6 Maui Project SignalR /client">SignalR Client</a></li>
+        <li><a href="#WebSocket-Server/Client-PoC">Websocket hybrid PoC</a></li>
+        <li><a href="#.NET-6-Core-Web-Project-SignalR-/server">SignalR Hub</a></li>
+        <li><a href="#.NET-6-Maui-Project-SignalR-/client">SignalR Client</a></li>
       </ul>    
     </li>
   </ol>
+</details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
