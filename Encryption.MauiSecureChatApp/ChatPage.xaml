@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Encryption.MauiSecureChatApp.ChatPage"
+             Title="ChatPage">
+    <StackLayout>
+        <ScrollView>
+
+            <VerticalStackLayout
+                VerticalOptions="Center"
+                Spacing="25"
+                Padding="30, 0" >
+
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="25"
+                    Padding="25">
+
+                    <Label 
+                        Text="Username:"/>
+
+                    <Label 
+                        x:Name="userName"
+                        Text="AniteK" />
+
+                </HorizontalStackLayout>
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="25"
+                    Padding="25">
+
+                    <Button
+                    x:Name="sendPublicKey"
+                    Text="Send Publiv Key To Server"
+                    FontSize="14"
+                    Clicked="sendPublicKeyBtn_Clicked"
+                    HorizontalOptions="Center" />
+
+                </HorizontalStackLayout>
+           
+
+
+                <Label
+                    Text="Chat Messages:"
+                    FontSize="16"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    x:Name="chatMessages"
+                    FontSize="14"
+                    HorizontalOptions="Center" />
+
+                <Entry
+                    x:Name="userMessage"
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    WidthRequest="300"/>
+
+                <Button
+                    x:Name="sendButton"
+                    Text="Send Message"
+                    FontSize="14"
+                    Clicked="sendChatBtn_Clicked"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

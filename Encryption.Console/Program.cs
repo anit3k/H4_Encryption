@@ -2,6 +2,7 @@
 using Encryption.Asymmetric.Factories;
 using Encryption.KeyGenerator.Factories;
 using Encryption.Symmetric.Factories;
+using Encryption.Symmetric.Models;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -13,7 +14,7 @@ var keysGenerates = rSAFactory.Create().GenerateNewKeySet();
 
 var rSA = new RSAFactoryImplementation();
 Dictionary<string, string> keys = rSA.Create().GenerateNewKeySet();
-string data = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker, Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again, i am skywalker. asdasdasdasdasdasdasdasdas1234567";
+string data = "Hello World, this text is encrypted using the RSA Cryptographic Algorithm, this is fun, Hello again,";
 var sizw = Encoding.Unicode.GetBytes(data);
 string encrypted = rSA.Create().Encrypt(keys["Public"], data);
 string decrypted = rSA.Create().Decrypt(keys["Private"], Convert.FromBase64String(encrypted));
@@ -31,7 +32,7 @@ string decryptedNew = rSANew.Create().Decrypt(keysNew["Private"], Convert.FromBa
 
 IKeyGeneratorFactory keyGeneratorFactory = new KeyGeneratorFactoryImplementation();
 ISymmetricFactory symmetricFactory = new SymmetricFactoryImplementation();
-ICyptographicSetupFactory setupFactory = new CyptographicSetupFactoryImplmentation();
+ICryptographicSetupFactory setupFactory = new CryptographicSetupFactoryImplmentation();
 
 var setup = setupFactory.Create();
 
@@ -40,7 +41,7 @@ TestTripleDES(keyGeneratorFactory, symmetricFactory, setup);
 
 
 
-static void TestAES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFactory symmetricFactory, Encryption.Symmetric.Models.CyptographicSetup setup)
+static void TestAES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFactory symmetricFactory, CyptographicSetup setup)
 {
     Console.WriteLine("AES with key of 256 bit, CBC cipher and padding PKCS7");
     setup.Message = "Hello World";
@@ -60,7 +61,7 @@ static void TestAES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFactory 
     Console.WriteLine();
 }
 
-static void TestTripleDES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFactory symmetricFactory, Encryption.Symmetric.Models.CyptographicSetup setup)
+static void TestTripleDES(IKeyGeneratorFactory keyGeneratorFactory, ISymmetricFactory symmetricFactory, CyptographicSetup setup)
 {
     Console.WriteLine("TripleDES with key of 196 bit, CBC cipher and padding PKCS7");
     setup.Message = "Hello World";

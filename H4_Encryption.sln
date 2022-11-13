@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.WebServer", "Enc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Encryption.WebClient", "Encryption.WebClient\Encryption.WebClient.csproj", "{CEE3621A-B379-479F-9D9E-FCDEB107470B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.SignalRHub", "Encryption.SignalRHub\Encryption.SignalRHub.csproj", "{A26F6AE1-65EB-4ED6-89E5-3213DD179DC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption.MauiSecureChatApp", "Encryption.MauiSecureChatApp\Encryption.MauiSecureChatApp.csproj", "{077F6432-298C-47DE-835B-DC3FCB66FCBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,16 @@ Global
 		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEE3621A-B379-479F-9D9E-FCDEB107470B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A26F6AE1-65EB-4ED6-89E5-3213DD179DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A26F6AE1-65EB-4ED6-89E5-3213DD179DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A26F6AE1-65EB-4ED6-89E5-3213DD179DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A26F6AE1-65EB-4ED6-89E5-3213DD179DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{077F6432-298C-47DE-835B-DC3FCB66FCBF}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

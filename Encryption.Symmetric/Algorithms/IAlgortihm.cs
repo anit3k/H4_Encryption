@@ -8,5 +8,8 @@ namespace Encryption.Symmetric.Algorithms
         string Encrypt(CyptographicSetup setup);
 
         string Decrypt(CyptographicSetup setup);
+
+        //byte[] DefaultEncrypt(string toEncrypt, byte[] iv, byte[] key);
+        //string DefaultDecrypt(string toEncrypt, byte[] iv, byte[] key);
     }
 }

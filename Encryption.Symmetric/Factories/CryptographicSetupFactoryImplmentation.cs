@@ -2,7 +2,7 @@
 
 namespace Encryption.Symmetric.Factories
 {
-    public class CyptographicSetupFactoryImplmentation : ICyptographicSetupFactory
+    public class CryptographicSetupFactoryImplmentation : ICryptographicSetupFactory
     {
         public CyptographicSetup Create()
         {

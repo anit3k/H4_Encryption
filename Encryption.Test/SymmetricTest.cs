@@ -8,14 +8,14 @@ namespace Encryption.Test
     {
         private KeyGeneratorFactoryImplementation _keyGeneratorFactory;
         private SymmetricFactoryImplementation _symmetricFactory;
-        private CyptographicSetupFactoryImplmentation _setupFactory;
+        private CryptographicSetupFactoryImplmentation _setupFactory;
 
         [SetUp]
         public void Setup()
         {
             _keyGeneratorFactory = new KeyGeneratorFactoryImplementation();
             _symmetricFactory = new SymmetricFactoryImplementation();
-            _setupFactory = new CyptographicSetupFactoryImplmentation();
+            _setupFactory = new CryptographicSetupFactoryImplmentation();
         }
 
         #region AES Test
