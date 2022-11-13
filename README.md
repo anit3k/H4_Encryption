@@ -13,7 +13,7 @@ specific encryption/encoding works.
 
 ## Assignments
 
-<details>
+
   <ol>
     <li>
       <a href="### Encryption.Hashing Library">Hashing, simple, salty and secret!</a>
@@ -55,7 +55,6 @@ specific encryption/encoding works.
       </ul>    
     </li>
   </ol>
-</details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -63,7 +62,7 @@ specific encryption/encoding works.
 
 ### Encryption.Hashing Library
 
-* <a href="https://github.com/anit3k/H4_Encryption/tree/main/Encryption.Hashing">Hashing Repo</a>
+* <a href="https://github.com/anit3k/H4_Encryption/tree/main/Encryption.Hashing">Hashing Repo</a> <br>
 In this project you will find 3 types of encoding.
     * Simple Hashing
     * Hashing with salt (and pepper)
